@@ -2,13 +2,13 @@ var Sequelize = require("sequelize");
 
 var sequelize = require("../config/connection");
 
-var User = sequelize.define("user", {
+var Flashcard = sequelize.define("flashcard", {
   
     // table schema goes here, columns follow the format below
   
     //title: Sequelize.STRING
 });
 
-User.sync();
+Flashcard.sync();
 
-module.exports = User;
+module.exports = Flashcard;
