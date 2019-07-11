@@ -12,6 +12,7 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// Grabs all of the routes from the "routes" folder
 app.use('/', routes);
 
 app.listen(PORT, function () {
