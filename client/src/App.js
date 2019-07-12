@@ -7,7 +7,7 @@ function App() {
 
   useEffect(() => {
     async function fetchData() {
-      let response = await fetch('/data');
+      let response = await fetch('/api/flashcards');
       let data = response.json();
       return data;
     }
