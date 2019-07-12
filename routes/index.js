@@ -1,5 +1,7 @@
 const routes = require('express').Router();
 const path = require('path');
+const connection = require('../config/connection')
+
 
 // Temp JSON response for connection testing
 const tempData = {
@@ -16,6 +18,13 @@ routes.get("/data", (req, res) => {
 routes.get("/", (req, res) => {
     res.status(200).json({ message: "connected!" });
 });
+
+routes.get("/flashcards", (req, res) => {
+    connection.query("SELECT * FROM cards;", function(err, data) {
+        if (err) throw err;
+        res.status(200).json({ data })
+    });
+})
 
 // For the two declarations below, basically we are incrementing our way through the api routes in an organized way.  this will allow us to set routes like ".....api/flashcards/add" to add a flashcard, but also "..../api/users/all" to get all users, without having them all mashed into a massive file.  It will also lend itself to a better understanding of how the requests and data will flow back and forth once things get complicated.
 
