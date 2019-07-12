@@ -10,6 +10,20 @@
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+   <!-- jQuery UI CSS -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
+
+   <!-- Bootstrap CSS-->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+   
+   <!-- Bootstrap jQuery -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> This link conflicts with the jQuery UI accordion--> 
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+   <link href="style.css" rel="stylesheet">
+
+    
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -25,7 +39,6 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
 
-    <h1> Test </h1>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -36,5 +49,94 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <div class="container">
+
+      <div class="jumbotron">
+          <div class="text1"> Nuclear Reactor </div>
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="#">Flash Cards</a>
+                <a class="nav-item nav-link" href="#">TBD</a>
+              </div>
+            </div>
+          </nav>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-12">
+  
+          <div class="card">
+            <div class="card-header">
+              <h3><strong>Create Flash Card</strong></h3>
+            </div>
+            <div class="card-body">
+              <form method="POST" role="form">
+  
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" class="form-control" id="name">
+                </div>
+  
+                <div class="form-group">
+                  <label for="context"> Context </label>
+                  <input type="text" class="form-control" id="role">
+                </div>
+              </form>
+              <br>
+              <div class="text-right">
+                <button type="submit" class="btn btn-primary btn-md" id="add-btn"><span class="fa fa-fire"></span> Add Flashcard </button>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+      </div> <!-- row closing -->
+
+      <!-- <div class="row">
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Special title treatment</h5>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Special title treatment</h5>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+      </div> row closing -->
+
+
+    </div> <!-- container closing tag-->
+
+    <script type="text/javascript">
+      $("#add-btn").on("click", function(event) {
+        event.preventDefault();
+        var newFlashcard = {
+          name: $("#name").val().trim(),
+          context: $("#context").val().trim(),
+        };
+          $.post("/api/flashcard", newFlashcard)
+          .then(function(data) {
+            console.log("add.html", data);
+          });
+      });
+    </script>
+
   </body>
 </html>
