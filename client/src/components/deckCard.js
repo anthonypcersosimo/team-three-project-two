@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import '../Canvas.css';
-import '../index.css';
 
 const DeckCard = (props) => {
     
@@ -19,6 +18,9 @@ const DeckCard = (props) => {
 export default DeckCard;
 
 // Deep Thoughts With Jack Handy: use validation on the deck build form to limit the length of title and description to force them to fit on card without fucking the styling.
+
+// Canvas component test code setup below:
+
 
 // const Canvas = () => {
 
