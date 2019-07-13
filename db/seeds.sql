@@ -1,3 +1,3 @@
-INSERT INTO cards (term, def) 
-VALUES ("Difference between sync and async code?", "Synchronous is the execution of only one thing at a time. Asynchronous means that you can execute multiple things at a time. You don't have to finish executing the current thing in order to move on."),
-("What are undeclared and undefined variables?", "Undeclared variables are those that do not exist in a program and are not declared. Undefined variables are those that are declared in the program but have not been given any value.");
+INSERT INTO cards (deckName, term, def) 
+VALUES ("Basic", "Difference between sync and async code?", "Synchronous is the execution of only one thing at a time. Asynchronous means that you can execute multiple things at a time. You don't have to finish executing the current thing in order to move on."),
+("Basic", "What are undeclared and undefined variables?", "Undeclared variables are those that do not exist in a program and are not declared. Undefined variables are those that are declared in the program but have not been given any value.");
