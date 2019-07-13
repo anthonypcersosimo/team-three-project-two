@@ -2,7 +2,7 @@ var db = require("../models");
 
 module.exports = function (app) {
 
-    // GET route for getting all of the posts
+    // GET route for getting all of the flashcards
     app.get("/api/flashcards/", function (req, res) {
         db.Flashcard.findAll({})
             .then(function (dbFlashcard) {
@@ -10,7 +10,7 @@ module.exports = function (app) {
             });
     });
 
-    // POST route for saving a new post
+    // POST route for saving a new flashcard
     app.post("/api/flashcards", function (req, res) {
         console.log(req.body);
         db.Flashcard.create({
@@ -53,9 +53,4 @@ module.exports = function (app) {
                 res.json(dbDeck);
             });
     });
-
-    //get route for returning all the deck names
-
-
-
 }
