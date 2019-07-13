@@ -21,5 +21,15 @@ module.exports = function (sequelize, DataTypes) {
             }
         }
     });
+
+    Flashcard.associate = function(models) {
+
+        Flashcard.belongsTo(models.Deck, {
+          foreignKey: {
+            allowNull: false
+          }
+        });
+      };
+
     return Flashcard;
 };
