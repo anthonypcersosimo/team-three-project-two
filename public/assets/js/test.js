@@ -38,11 +38,26 @@ $(document).ready(function () {
         },
     ];
 
+    const newDecks = [
+        {
+            deck_name: "basic"
+        },
+        {
+            deck_name: "not basic"
+        }
+    ];
+
     function submitCard(Flashcard) {
         $.post("/api/flashcards/", Flashcard, function () {
             
         });
     };
 
+    function submitDeck(Deck) {
+        $.post("/api/decks", Deck, function () {
+
+        })
+    }
+    newDecks.forEach(deck => submitDeck(deck))
     newCards.forEach(card => submitCard(card))
 })

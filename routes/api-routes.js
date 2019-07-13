@@ -22,4 +22,40 @@ module.exports = function (app) {
                 res.json(dbFlashcard);
             });
     });
+
+    // GET route for getting all of the decks
+    app.get("/api/decks", function (req, res) {
+        db.Deck.findAll({})
+            .then(function (dbDeck) {
+                res.json(dbDeck);
+            });
+    });
+
+    // POST route for saving a new deck
+    app.post("/api/decks", function (req, res) {
+        console.log(req.body);
+        db.Deck.create({
+            deck_name: req.body.deck_name,
+        })
+            .then(function (dbDeck) {
+                res.json(dbDeck);
+            });
+    });
+
+    // Get route for returning all cards for a specific deck
+    app.get("/api/decks/:deck", function (req, res) {
+        db.Flashcard.findAll({
+            where: {
+                deck_name: req.params.deck
+            }
+        })
+            .then(function (dbDeck) {
+                res.json(dbDeck);
+            });
+    });
+
+    //get route for returning all the deck names
+
+
+
 }
