@@ -6,6 +6,7 @@ USE flashcards_db;
 
 CREATE TABLE cards (
   id int AUTO_INCREMENT NOT NULL,
+  deckName varchar(200) NOT NULL,
   term varchar(200) NOT NULL,
   def varchar(200) NOT NULL,
   PRIMARY KEY(id)
