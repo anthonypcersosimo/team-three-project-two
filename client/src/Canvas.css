@@ -1,3 +1,7 @@
+body {
+    background-color: #c6f6d5;
+}
+
 .deck-card {
     width: 300px;
     height: 200px
