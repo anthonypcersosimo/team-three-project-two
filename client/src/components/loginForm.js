@@ -20,7 +20,7 @@ const LoginForm = (props) => {
                 if (!user.userName || !user.password) return
                 console.log(user.userName, user.password)
                 props.logUserIn(user)
-                setUser(initialFormState)
+                // setUser(initialFormState)
             }}
             >
                 <label>User Name:</label>

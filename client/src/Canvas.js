@@ -7,21 +7,18 @@ import './Canvas.css'
 const Canvas = () => {
     
     const initialUserState = { userName: '', password: '' }
+
     const [user, setUser] = useState(initialUserState)
 
     const logUserIn = (inputUser) => {
+
+        setUser({userName: inputUser.userName, password: inputUser.password})
         
         console.log(inputUser)
-        
-        setUser({
-            userName: 'joe',
-            password: 'blo'
-        })
-        console.log(user)
+        console.log(`User: ${user}`)
         console.log(`${user.userName} is logged in!`)
-        // console.log(`${inputUser.userName} is logged in!`)
-    }    
-
+        console.log(`${inputUser.userName} is logged in!`)
+    }
     return (
         <div>
             <div className="canvas-header">
