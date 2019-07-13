@@ -1,13 +1,4 @@
-DROP DATABASE IF EXISTS flashcards_db;
-
-CREATE DATABASE flashcards_db;
-
-USE flashcards_db;
-
-CREATE TABLE cards (
-  id int AUTO_INCREMENT NOT NULL,
-  deckName varchar(200) NOT NULL,
-  term varchar(200) NOT NULL,
-  def varchar(200) NOT NULL,
-  PRIMARY KEY(id)
-);
+-- Drops the blogger if it exists currently --
+DROP DATABASE IF EXISTS blogger;
+-- Creates the "blogger" database --
+CREATE DATABASE blogger;
