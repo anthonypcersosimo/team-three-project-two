@@ -1,22 +1,17 @@
-import React, { useState } from 'react';
-import DeckCard from './components/deckCard'
+import React from 'react';
+// import React, { useState } from 'react';
+// import DeckCard from './components/deckCard'
+import './Canvas.css'
 
 const Canvas = () => {
 
-    const testDeck = {
-        title: "React Basics",
-        description: "A short introduction to the basics of React: state, props, hooks, etc."
-    }
-
-    const [deck] = useState(testDeck)
-
     return (
         <div>
-            <div>
-                <h1>Style That Snizz!</h1>
+            <div className="canvas-header">
+                <h1 className="code-font">Style That Snizz!</h1>
             </div>
-            <div className="m-4">
-                <DeckCard deck={deck}/>
+            <div className="">
+               
             </div>
         </div>
     )

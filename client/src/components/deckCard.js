@@ -17,3 +17,26 @@ const DeckCard = (props) => {
     )
 }
 export default DeckCard;
+
+// Deep Thoughts With Jack Handy: use validation on the deck build form to limit the length of title and description to force them to fit on card without fucking the styling.
+
+// const Canvas = () => {
+
+//     const testDeck = {
+//         title: "React Basics",
+//         description: "A short introduction to the basics of React: state, props, etc."
+//     }
+
+//     const [deck] = useState(testDeck)
+
+//     return (
+//         <div>
+//             <div>
+//                 <h1>Style That Snizz!</h1>
+//             </div>
+//             <div className="m-4">
+//                 <DeckCard deck={deck}/>
+//             </div>
+//         </div>
+//     )
+// }
