@@ -1,8 +1,24 @@
 $(document).ready(function () {
     let deckId;
     let deckName;
+    let decks;
+
+    // setDecksMenu();
+
+    const setDecksMenu = () => {
+        $.get('/api/decks', data => {
+            data.forEach(deck => {
+                let button = $(`<button type="button" class="dropdown-item">`);
+                button.attr("data-deck", deck);
+                button.text(deck.deck_name);
+                $("#deck-menu").append(button)
+            })
+        })
+    }
+
+    setDecksMenu();
+    
     const submitDeck = deck => $.post("/api/decks", deck, function (response) {
-        // console.log(response);
         deckId = response
         console.log(deckId)
     })
@@ -11,6 +27,7 @@ $(document).ready(function () {
 
     $("#complete").click((event) => {
         event.preventDefault();
+        setDecksMenu();
         $("#card-form").addClass("hidden");
         $("#button-container").removeClass("hidden");
     })
