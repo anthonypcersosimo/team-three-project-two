@@ -1,6 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
     var Deck = sequelize.define("Deck", {
-
       deck_name: DataTypes.STRING
     });
   

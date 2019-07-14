@@ -16,7 +16,8 @@ module.exports = function (app) {
         db.Flashcard.create({
             deck_name: req.body.deck_name,
             term: req.body.term,
-            def: req.body.def
+            def: req.body.def,
+            DeckId: req.body.DeckId
         })
             .then(function (dbFlashcard) {
                 res.json(dbFlashcard);
@@ -33,24 +34,26 @@ module.exports = function (app) {
 
     // POST route for saving a new deck
     app.post("/api/decks", function (req, res) {
-        console.log(req.body);
+        // console.log(req.body);
         db.Deck.create({
             deck_name: req.body.deck_name,
         })
             .then(function (dbDeck) {
-                res.json(dbDeck);
+                res.json(dbDeck.id);
             });
     });
 
     // Get route for returning all cards for a specific deck
-    app.get("/api/decks/:deck", function (req, res) {
+    app.get("/api/decks/:deckId", function (req, res) {
         db.Flashcard.findAll({
             where: {
-                deck_name: req.params.deck
+                deckId: req.params.deckId
             }
         })
             .then(function (dbDeck) {
                 res.json(dbDeck);
+                // res.send({dbDeck})
             });
     });
 }
+
