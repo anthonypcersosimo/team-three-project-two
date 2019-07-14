@@ -58,7 +58,7 @@ $(document).ready(function () {
 
         })
     }
-    submitDeck(newDecks[0])
-    // newDecks.forEach(deck => submitDeck(deck))
-    // newCards.forEach(card => submitCard(card))
+ 
+    newDecks.forEach(deck => submitDeck(deck))
+    newCards.forEach(card => submitCard(card))
 })
