@@ -11,7 +11,8 @@ $(document).ready(function () {
 
     $("#complete").click((event) => {
         event.preventDefault();
-
+        $("#card-form").addClass("hidden");
+        $("#button-container").removeClass("hidden");
     })
 
     $("#deck-form").submit(event => {
@@ -39,4 +40,9 @@ $(document).ready(function () {
             .then($("#card-form").trigger("reset"))
     })
 
+    $("#anotherDeck").click(event => {
+        event.preventDefault();
+        $("#button-container").addClass("hidden");
+        $("#deck-form").removeClass("hidden")
+    })
 })
