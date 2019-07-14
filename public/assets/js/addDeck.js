@@ -1,17 +1,25 @@
 $(document).ready(function () {
     let deckId;
     let deckName;
-    let decks;
-
-    // setDecksMenu();
 
     const setDecksMenu = () => {
         $.get('/api/decks', data => {
             data.forEach(deck => {
+                // console.log(deck.id)
                 let button = $(`<button type="button" class="dropdown-item">`);
-                button.attr("data-deck", deck);
+                button.attr("data-id", deck.id);
                 button.text(deck.deck_name);
+                // console.log(button.attr("data-id"))
                 $("#deck-menu").append(button)
+            })
+
+            $(".dropdown-item").on("click", function () {
+                // console.log("click")
+                let deckId = $(this).attr("data-id")
+                console.log(deckId)
+                $("#deck-form").trigger("reset");
+                $("#deck-form").addClass("hidden");
+                $("#card-form").removeClass("hidden");
             })
         })
     }
@@ -62,4 +70,11 @@ $(document).ready(function () {
         $("#button-container").addClass("hidden");
         $("#deck-form").removeClass("hidden")
     })
+
+    // $(".dropdown-item").on("click", () => {
+    //     console.log("click")
+    //     deckId = parseInt($(this).attr("data-deckId"))
+    //     console.log(`deckid ${deckId}`)
+    // })
+
 })
