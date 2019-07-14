@@ -48,17 +48,17 @@ $(document).ready(function () {
     ];
 
     function submitCard(Flashcard) {
-        $.post("/api/flashcards/", Flashcard, function (result) {
-            console.log(result)            
+        $.post("/api/flashcards/", Flashcard, function () {
+            
         });
     };
 
     function submitDeck(Deck) {
-        $.post("/api/decks/", Deck, function () {
+        $.post("/api/decks", Deck, function () {
 
         })
     }
- 
+
     newDecks.forEach(deck => submitDeck(deck))
     newCards.forEach(card => submitCard(card))
 })
