@@ -38,15 +38,15 @@ module.exports = function (app) {
             deck_name: req.body.deck_name,
         })
             .then(function (dbDeck) {
-                res.json(dbDeck);
+                res.json(dbDeck.id);
             });
     });
 
     // Get route for returning all cards for a specific deck
-    app.get("/api/decks/:deck", function (req, res) {
+    app.get("/api/decks/:deck_name", function (req, res) {
         db.Flashcard.findAll({
             where: {
-                deck_name: req.params.deck
+                deck_name: req.params.deck_name
             }
         })
             .then(function (dbDeck) {
@@ -54,3 +54,4 @@ module.exports = function (app) {
             });
     });
 }
+
