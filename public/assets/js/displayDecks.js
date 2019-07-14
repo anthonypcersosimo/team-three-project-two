@@ -2,23 +2,23 @@ $(document).ready(function() {
     // deckContainer holds all of our decks
     var deckContainer = $(".deck-container");
     // Click events for the edit and delete buttons
-    $(document).on("click", "button.delete", handlePostDelete);
-    $(document).on("click", "button.edit", handlePostEdit);
+    // $(document).on("click", "button.delete", handlePostDelete);
+    // $(document).on("click", "button.edit", handlePostEdit);
     var decks;
   
     // This function grabs decks from the database and updates the view
     getDecks = () => {
-        $.get("INSERT API route for decks/cards", function(data) {
+        $.get("/api/decks", function(data) {
             console.log("Decks", data);
             decks = data;
             console.log(decks)
-            // if ("database has data...") {
-            //     initializeRows();
-            // }
+            if (data) {
+                initializeRows();
+            }
 
-            // else {
-            //     displayEmpty();
-            // }
+            else {
+                displayEmpty();
+            }
         });
     }
   
@@ -73,9 +73,9 @@ $(document).ready(function() {
       var newPostBody = $("<p>");
       newPostTitle.text(post.title + " ");
       newPostBody.text(post.body);
-      var formattedDate = new Date(post.createdAt);
-      formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
-      newPostDate.text(formattedDate);
+      // var formattedDate = new Date(post.createdAt);
+      // formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
+      // newPostDate.text(formattedDate);
       newPostTitle.append(newPostDate);
       newPostCardHeading.append(deleteBtn);
       newPostCardHeading.append(editBtn);
