@@ -6,6 +6,8 @@ $(document).ready(function () {
         $.get('/api/decks', data => {
             data.forEach(deck => {
                 // console.log(deck.id)
+                // meed to prevent duplication
+
                 let button = $(`<button type="button" class="dropdown-item">`);
                 button.attr("data-id", deck.id);
                 button.text(deck.deck_name);
@@ -70,11 +72,4 @@ $(document).ready(function () {
         $("#button-container").addClass("hidden");
         $("#deck-form").removeClass("hidden")
     })
-
-    // $(".dropdown-item").on("click", () => {
-    //     console.log("click")
-    //     deckId = parseInt($(this).attr("data-deckId"))
-    //     console.log(`deckid ${deckId}`)
-    // })
-
 })
