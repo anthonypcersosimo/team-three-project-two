@@ -4,37 +4,44 @@ $(document).ready(function () {
         {
             deck_name: "basic",
             term: "test",
-            def: "test def"
+            def: "test def",
+            DeckId: 1
         },
         {
             deck_name: "basic",
             term: "test",
-            def: "test def"
+            def: "test def",
+            DeckId: 1
         },
         {
             deck_name: "basic",
             term: "test",
-            def: "test def"
+            def: "test def",
+            DeckId: 1
         },
         {
             deck_name: "not basic",
             term: "test",
-            def: "test def"
+            def: "test def",
+            DeckId: 2
         },
         {
             deck_name: "not basic",
             term: "test",
-            def: "test def"
+            def: "test def",
+            DeckId: 2
         },
         {
             deck_name: "not basic",
             term: "test",
-            def: "test def"
+            def: "test def",
+            DeckId: 2
         },
         {
             deck_name: "not basic",
             term: "test",
-            def: "test def"
+            def: "test def",
+            DeckId: 2
         },
     ];
 
@@ -61,4 +68,5 @@ $(document).ready(function () {
 
     newDecks.forEach(deck => submitDeck(deck))
     newCards.forEach(card => submitCard(card))
+    // submitCard(newCards[0])
 })

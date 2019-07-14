@@ -1,10 +1,42 @@
-$(document).ready(function() {
+$(document).ready(function () {
+    let deckId;
+    let deckName;
+    const submitDeck = deck => $.post("/api/decks", deck, function (response) {
+        // console.log(response);
+        deckId = response
+        console.log(deckId)
+    })
 
-    const submitDeck = Deck => $.post("/api/decks", Deck)
+    const submitCard = Flashcard => $.post("/api/flashcards/", Flashcard);
+
+    $("#complete").click((event) => {
+        event.preventDefault();
+
+    })
 
     $("#deck-form").submit(event => {
         event.preventDefault();
-        let deckName = $("#deck-name").val().trim();
-        submitDeck(deckName).then(console.log(data));
+        deckName = $("#deck-name").val().trim();
+        let deck = {
+            deck_name: deckName
+        }
+        submitDeck(deck)
+            .then($("#deck-form").trigger("reset"))
+            .then($("#deck-form").addClass("hidden"))
+            .then($("#card-form").removeClass("hidden"));
     })
+
+    $("#card-form").submit(event => {
+        event.preventDefault();
+        let card = {
+            deck_name: deckName,
+            term: $("#question").val().trim(),
+            def: $("#answer").val().trim(),
+            DeckId: deckId
+        }
+
+        submitCard(card)
+            .then($("#card-form").trigger("reset"))
+    })
+
 })
