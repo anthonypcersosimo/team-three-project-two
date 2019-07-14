@@ -15,6 +15,7 @@ $(document).ready(function () {
                 $("#deck-menu").append(button)
             })
 
+            // this was sooo weird, the click event assignment below wouldn't bind to $(this) when I was using an arrow function.  It was extremely frustrating because all the other events were triggering fine.  It took forever to randomly switch it to the "function () {}" syntax and see that it worked.
             $(".dropdown-item").on("click", function () {
                 // console.log("click")
                 let deckId = $(this).attr("data-id")
