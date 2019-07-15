@@ -1,4 +1,4 @@
-.box.flex {
+.box {
     display:flex;
     justify-content: center;
     align-items: center;
@@ -8,6 +8,17 @@
   .card {
       width: 400px;
       height: 300px;
+  }
+
+  .controls {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+  }
+
+  .controls button {
+    margin-top: 10%;
+    width: 25%;
   }
   
   .flip-card {
@@ -27,7 +38,7 @@
       transform-style: preserve-3d;
       box-shadow: 0 4px 8px 0 rgba(218, 184, 184, 0.2);
     }
-    
+
     .flip-card-front, .flip-card-back {
       position: absolute;
       width: 100%;
@@ -42,6 +53,8 @@
     .flip-card-back {
       transform: rotateY(180deg);
     }
+
+  
    
   
   
