@@ -12,8 +12,8 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="./assets/css/card.css">
 </head>
 
@@ -22,25 +22,23 @@
     <div class="box">
 
         <div class="flip-card">
-
+            <h5 class="deck-title"> Javascript </h5>
             <div onClick="flip()" class="flip-card-inner">
 
                 <div class="flip-card-front">
-                    <div class="card bg-primary mb-3">
-                        <div class="card-header bg-secondary">Question:</div>
+                    <div class="card">
+                        <div class="card-header" style="background: blue; color: white;">Question:</div>
                         <div class="card-body">
-                            <h5 class="card-title">Deck title</h5>
-                            <p class="card-text"> Insert question here </p>
+                            <p class="card-text"> What is a function? </p>
                         </div>
                     </div>
                 </div>
 
                 <div class="flip-card-back">
-                    <div class="card bg-secondary mb-3">
-                        <div class="card-header bg-primary">Answer:</div>
+                    <div class="card">
+                        <div class="card-header" style="background: blue; color: red;">Answer:</div>
                         <div class="card-body">
-                            <h5 class="card-title">Deck title</h5>
-                            <p class="card-text"> Insert answer here </p>
+                            <p class="card-text"> </p>
                         </div>
                     </div>
                 </div>
@@ -54,7 +52,7 @@
 
         </div>
 
-    
+
         <!-- </div> -->
         <script src="https://code.jquery.com/jquery-latest.js"></script>
         <script src="./assets/js/card.js" async defer></script>

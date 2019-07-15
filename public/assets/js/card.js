@@ -1,11 +1,6 @@
-$(document).ready(function(){
-    loadDeck("deck ready");
+$.get("/api/flashcards/deck/1", function(result) {
+    
 });
-
-const loadDeck = id => {
-    console.log('Deck loaded');
-};
-
 // changes the class of the card face which animates the flip and toggles the side shown
 function flip() {
     $('.flip-card-inner').toggleClass('flipped');
