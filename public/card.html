@@ -21,10 +21,10 @@
 
     <div class="box">
 
-        <div onClick="flip()" class="flip-card">
-            
-            <div class="flip-card-inner">
-                
+        <div class="flip-card">
+
+            <div onClick="flip()" class="flip-card-inner">
+
                 <div class="flip-card-front">
                     <div class="card bg-primary mb-3">
                         <div class="card-header bg-secondary">Question:</div>
@@ -34,7 +34,7 @@
                         </div>
                     </div>
                 </div>
-        
+
                 <div class="flip-card-back">
                     <div class="card bg-secondary mb-3">
                         <div class="card-header bg-primary">Answer:</div>
@@ -47,21 +47,27 @@
             </div>
 
             <div class="controls">
-                <button type="button" class="btn btn-danger">Last</button>
-                <button type="button" class="btn btn-danger">Flip</button>
-                <button type="button" class="btn btn-danger">Next</button>
+                <button type="button" class="last btn btn-danger">Last</button>
+                <button onClick="flip()" type="button" class="flip btn btn-danger">Flip</button>
+                <button type="button" class="next btn btn-danger">Next</button>
             </div>
 
         </div>
 
-
-
-
-
+    
         <!-- </div> -->
-        <script src="https://code.jquery.com/jquery-3.4.1.js"
-            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-latest.js"></script>
         <script src="./assets/js/card.js" async defer></script>
+        <!-- bootstrap  -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
 </body>
 
 </html>

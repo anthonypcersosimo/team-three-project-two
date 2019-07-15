@@ -1,7 +1,15 @@
+$(document).ready(function(){
+    loadDeck("deck ready");
+});
+
+const loadDeck = id => {
+    console.log('Deck loaded');
+};
+
 // changes the class of the card face which animates the flip and toggles the side shown
 function flip() {
     $('.flip-card-inner').toggleClass('flipped');
-}
+};
 
 // need way to get deck name and display in deck title
 
