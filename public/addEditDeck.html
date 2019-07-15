@@ -8,7 +8,9 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/flatly/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/index.css" media="screen" title="no title">
     <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 
@@ -35,14 +37,6 @@
                             placeholder="Enter the name of your new deck!">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Edit a Deck
-                        </button>
-                        <div id="deck-menu" class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        </div>
-                    </div>
                 </form>
                 <form id="card-form" class="hidden">
                     <div class="form-group">
@@ -54,16 +48,36 @@
                         <textarea class="form-control" id="answer" rows="3"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
-                    <button id="complete" class="btn btn-primary">Deck Complete</button>
+                    <button id="complete" class="btn btn-primary">Submit & Finish</button>
                 </form>
                 <div id="button-container" class="hidden">
                     <br>
                     <br>
 
-                    <button id="anotherDeck" class="btn btn-primary">Add or Edit a Deck</button>
+                    <!-- <button id="anotherDeck" class="btn btn-primary">Add or Edit a Deck</button> -->
                     <button id="backToDecks" class="btn btn-primary">Back to Decks</button>
                 </div>
             </div>
+        </div>
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td scope="col">#</td>
+                        <td scope="col">Question</td>
+                        <td scope="col">Answer</td>
+                        <td scope="col">Edit/Delete</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">card id goes here</th>
+                        <td>question goes here</td>
+                        <td>answer goes here</td>
+                        <td>buttons go here</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 
