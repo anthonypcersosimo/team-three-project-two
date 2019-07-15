@@ -40,6 +40,11 @@
                     </div>
                 </div>
             </div>
+            <div class="controls">
+                <button type="button" class="btn btn-danger">Last</button>
+                <button type="button" class="btn btn-danger">Flip</button>
+                <button type="button" class="btn btn-danger">Next</button>
+            </div>
         </div>
 
 
@@ -52,3 +57,17 @@
 </body>
 
 </html>
+
+<!-- for James:
+
+i think that these might be good steps to move forward.
+
+	1. add some buttons: back, forward, perhaps a flip button as well might be more intuitive?
+	
+	2. on page load call the api/decks/id endpoint with a hard coded id# for now, set an array to the data returned.  that array will be the deck of cards.
+		
+	3.use a global variable to keep track of the currentcard's id (number).
+		
+	4. maybe have a "handle card change" type function that takes a variable to indicate forward or back (from the click event), and accesses the global "current card" variable. then use if statement to either increment or decrement the CurrentCard variable and then re-render cardArray[currentCard]
+	
+ -->
