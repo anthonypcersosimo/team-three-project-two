@@ -12,7 +12,7 @@ $(document).ready(function() {
             console.log("Decks", data);
             decks = data;
             console.log(decks)
-            if (data) {
+            if (decks.length > 0) {
                 initializeRows();
             }
 
@@ -113,7 +113,7 @@ $(document).ready(function() {
       deckContainer.empty();
       var messageH2 = $("<h2>");
       messageH2.css({ "text-align": "center", "margin-top": "50px" });
-      messageH2.html("No decks yet for this category, navigate <a href='/cms'>here</a> in order to create a new post.");
+      messageH2.html("Uh oh! You have not created a deck yet! Click <a href='/form'>here</a> to create a new deck.");
       deckContainer.append(messageH2);
     }
   
