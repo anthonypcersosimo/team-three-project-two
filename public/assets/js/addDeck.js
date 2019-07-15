@@ -2,20 +2,34 @@ $(document).ready(function () {
     let deckId;
     let deckName;
 
-    const url = window.location.search;
+    // const url = window.location.search;
 
-    if (url.indexOf("?deck_id=") !== -1) {
-        deckId = url.split('=')[1];
-        // display of the deck form is hidden, table shown
-        //make a getCards function to get called here with the deckId
-        //make a cards table to display them w/ edit/delete button on the right side.
-    } else {
-        // display the deck form, table "form" hidden
-    }
+    // if (url.indexOf("?deck_id=") !== -1) {
+    //     deckId = url.split('=')[1];
+    //     // display of the deck form is hidden, table shown
+    //     //make a getCards function to get called here with the deckId
+    //     //make a cards table to display them w/ edit/delete button on the right side.
+    // } else {
+    //     // display the deck form, table "form" hidden
+    // }
 
-    const displayCardsTable = (id) => {
-        // 
-    }
+    // const displayCardsTable = (id) => {
+    //     // 
+    // }
+
+    // const addTableRow = (cardId) => {
+    //     <tr>
+    //     <th scope="row">card id goes here</th>
+    //     <td>question goes here</td>
+    //     <td>answer goes here</td>
+    //     <td>buttons go here</td>
+    //     </tr>
+
+    //     let newRow = $("<tr>");
+    //     newRow.data()
+
+
+    // }
 
     const submitDeck = deck => $.post("/api/decks", deck, function (response) {
         deckId = response
