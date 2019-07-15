@@ -22,7 +22,7 @@ module.exports = function(app) {
   });
   
   app.get("/card", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/currentCard/card.html"));
+    res.sendFile(path.join(__dirname, "../public/card.html"));
   });
   
   app.get("/form", function(req, res) {
