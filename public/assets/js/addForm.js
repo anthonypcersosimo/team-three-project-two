@@ -7,13 +7,17 @@ $(document).ready(function () {
     $("#card-form").submit(event => handleCardSubmit(event));
     $("#deck-form").submit(event => handleDeckSubmit(event));
     $("#complete").click(event => handleFinish(event));
+    $("#back-decks").click(event => {
+        event.preventDefault();
+        window.location.href = '/display'
+    });
+
+    $("#study-this").click(event => {
+        event.preventDefault();
+        window.location.href = '/card?deck_id=' + deckId;
+    });
 
     var url = window.location.search;
-    // Sets a flag for whether or not we're updating a post to be false initially
-    // var updating = false;
-
-    // If we have this section in our url, we pull out the post id from the url
-    // In '?post_id=1', postId is 1
     
     const getCards = deckId => $.get("api/flashcards/deck/" + deckId, response => {
         deck = response;
@@ -52,7 +56,8 @@ $(document).ready(function () {
 
         submitCard(card)
             .then($("#card-form").trigger("reset"))
-            .then(() => window.location.href = "/display");
+            .then(() => window.location.href = "/display")
+            .then($("#complete").click(event => handleFinish(event)));
 
     }
 

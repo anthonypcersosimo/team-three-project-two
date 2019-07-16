@@ -54,7 +54,7 @@ $(document).ready(function() {
   createNewRow = (post) => {
     console.log(post);
 
-    var newPostCard = $("<div>");
+    var newPostCard = $("<div style='cursor:pointer;'>");
     newPostCard.addClass("card");
     newPostCard.attr("id", post.id);
     var newPostCardHeading = $("<div>");
@@ -111,6 +111,11 @@ $(document).ready(function() {
       window.location.href = "/form";
     }
   });
+  
+  $(document).on("click", ".card", function () {
+    deckId = $(this).parent("div").data("id");
+    console.log(deckId)
+  })
     
   handlePostDelete = (e) => {
     var target = e.id;
