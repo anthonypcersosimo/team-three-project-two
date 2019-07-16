@@ -6,7 +6,7 @@ $(document).ready(function () {
 
     $("#card-form").submit(event => handleCardSubmit(event));
     $("#deck-form").submit(event => handleDeckSubmit(event));
-
+    $("#complete").click(event => handleFinish(event));
 
     var url = window.location.search;
     // Sets a flag for whether or not we're updating a post to be false initially
@@ -24,6 +24,7 @@ $(document).ready(function () {
     if (url.indexOf("?deck_id=") !== -1) {
         deckId = url.split("=")[1];
         console.log(deckId)
+        $("#deck-form").addClass("hidden");
         getCards(deckId);
     }
     const deleteCard = cardId => {
@@ -34,6 +35,26 @@ $(document).ready(function () {
             .then(() => getCards(deckId)
                 .then(renderTable(deck)))
     };
+
+    const handleFinish = event => {
+        event.preventDefault();
+        let term = $("#question").val().trim();
+        let def = $("#answer").val().trim();
+
+        if (!term || !def) return;
+
+        let card = {
+            deck_name: deckName,
+            term: $("#question").val().trim(),
+            def: $("#answer").val().trim(),
+            DeckId: deckId
+        };
+
+        submitCard(card)
+            .then($("#card-form").trigger("reset"))
+            .then(() => window.location.href = "/display");
+
+    }
 
     const submitDeck = deckName => $.post("/api/decks", deckName, response => deckId = response);
 
