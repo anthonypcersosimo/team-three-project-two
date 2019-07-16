@@ -1,19 +1,13 @@
-// $(document).ready(function() {
-//     let currentDeck = [];
-
-//     let $deck-title = $(".deck-title");
-
-//     function getDeckTitle() {
-//         $.get("/api/flashcards/deck_name/1", function(data) {
-//             deckName = data;
-//           });
-//         }
-//     } 
-// };
-
-// $.get("/api/flashcards/deck/1", function(result) {
+$(document).ready(function() {
+    let deckId;
+    let deckName;
+    let deck = []; 
     
-// });
+    const getCards = deckId => $.get("api/flashcards/deck/" + deckId, response => {
+        deck = response;
+        console.log(deck)
+    })
+});
 
 function roll() {
     $('.roll-header-inner').toggleClass('rolled');
