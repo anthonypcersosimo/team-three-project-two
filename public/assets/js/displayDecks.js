@@ -66,6 +66,7 @@ $(document).ready(function() {
     var editBtn = $("<button>");
     editBtn.text("EDIT");
     editBtn.addClass("edit btn btn-default deck-btn");
+    editBtn.attr("id", post.id);
     var newPostTitle = $("<h2>");
     var newPostDate = $("<small>");
     var newPostCategory = $("<h5>");
@@ -103,7 +104,8 @@ $(document).ready(function() {
       handlePostDelete(e.target);
     }
     else if (e.target.className.includes('edit')) {
-      handlePostEdit();
+      
+      handlePostEdit(e.target)
     }
     else if (e.target.className.includes('new-deck')) {
       window.location.href = "/form";
@@ -115,10 +117,12 @@ $(document).ready(function() {
     deletePost(target);
   }
   
-  
-  handlePostEdit = () => {
-    
+  const handlePostEdit = e => {
+    let target = e.id
+    console.log(target)
+    window.location.href = "/form?deck_id=" + target;
   }
+  
   
   // This function displays a message when there are no decks
   displayEmpty = () => {
