@@ -53,25 +53,14 @@ $(document).ready(function () {
 
         submitCard(card)
             .then($("#card-form").trigger("reset"))
-            .then(() => getCards(deckId)
-                .then(renderTable(deck)))
+            .then(() => getCards(deckId)    
+            .then(renderTable(deck)))
     }
 
     const makeTableRow = card => {
         let id = card.id;
         let question = card.term;
         let answer = card.def;
-
-        // let editButton = $("<button>");
-        // editButton.text("EDIT");
-        // editButton.addClass("edit btn btn-warning m-1 p-1");
-        // // editButton.data("id", id);
-
-        // let deleteButton = $("<button>");
-        // deleteButton.text("x");
-        // deleteButton.addClass("delete btn btn-danger m-1 p-1");
-        // // deleteButton.data("id", id);
-
 
         let newRow = $("<tr>");
         newRow.data("id", id);
@@ -81,7 +70,7 @@ $(document).ready(function () {
         newRow.append(`<th scope="row"><a style='cursor:pointer;'>${id}</a></td>`)
         newRow.append(`<td><a style='cursor:pointer;' class='edit-term'>${question}</a></td>`)
         newRow.append(`<td><a style='cursor:pointer;' class='edit-def'>${answer}</a></td>`)
-        newRow.append(`<td><a style='cursor:pointer;color:red' class='delete-card'>Delete</a></td>`)
+        newRow.append(`<td class="delete-row"><a style='cursor:pointer;color:red' class='delete-card'>Delete</a></td>`)
 
         return newRow;
     }
@@ -93,9 +82,10 @@ $(document).ready(function () {
             $("#card-rows").append(newRow);
         })
     }
-
-    $(".delete-card").on("click", function () {
-        let id = $(this).parent("").
+    $(document).on("click", ".delete-card", function () {
+        console.log("click delete")
+        let id = $(this).parent("td").parent("tr").data("id")
+        console.log("ID: " + id)
     })
 
 })
