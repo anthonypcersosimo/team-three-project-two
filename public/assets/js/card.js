@@ -1,18 +1,30 @@
-$.get("/api/flashcards/deck/1", function(result) {
+$(document).ready(function() {
+    let deckId;
+    let deckName;
+    let deck = []; 
     
+    const getCards = deckId => $.get("api/flashcards/deck/" + deckId, response => {
+        deck = response;
+        console.log(deck)
+    })
 });
+
+function roll() {
+    $('.roll-header-inner').toggleClass('rolled');
+    setTimeout(function(){ flip(); }, 0500);
+};
+
 // changes the class of the card face which animates the flip and toggles the side shown
 function flip() {
     $('.flip-card-inner').toggleClass('flipped');
 };
 
-// need way to get deck name and display in deck title
 
-// need way to get card from selected deck and display question on question side of card/
+// Questions I have:
 
-// need way to get card from selected deck and display answer on answer side of card
+// #1) When a user selects a deck at the previous screen, what tells my files what was selected so they know what to load?
 
-// need way to get last card
+// #2) How do I take the selected deck and split into individual pairings of questions/answers (single card) and what becomes the card identifer? (for going back and forth through the deck)
 
-// need way to get next card
+
 
