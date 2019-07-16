@@ -109,8 +109,8 @@
     .roll-header-inner.rolled {
       transform: rotateX(180deg);
     }
-    
-    .roll-header-inner back {
+  
+    .answer-side {
       transform: rotateX(180deg);
     }
   
