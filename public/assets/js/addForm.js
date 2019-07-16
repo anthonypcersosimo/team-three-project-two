@@ -2,18 +2,18 @@ $(document).ready(function () {
 
     let deckId;
     let deckName;
-    let lastCardId;
     let deck = [];
 
     $("#card-form").submit(event => handleCardSubmit(event))
     $("#deck-form").submit(event => handleDeckSubmit(event))
+    // $("#complete").click(event => handleCardSubmit(event)
+    //     .then($("#card-form").addClass("hidden"))
+    //     .then($("#deck-form").removeClass("hidden")))
 
     const getCards = deckId => $.get("api/flashcards/deck/" + deckId, response => {
         deck = response;
         console.log(deck)
     })
-
-    getCards(1)
 
     const submitDeck = deckName => $.post("/api/decks", deckName, response => deckId = response)
 
@@ -24,6 +24,7 @@ $(document).ready(function () {
 
     const handleDeckSubmit = event => {
         event.preventDefault();
+        console.log("deck submit")
         deckName = $("#deck-name").val().trim();
         if (!deckName) return;
         let deck = {
@@ -37,6 +38,7 @@ $(document).ready(function () {
 
     const handleCardSubmit = event => {
         event.preventDefault();
+        console.log("card submit")
         let term = $("#question").val().trim();
         let def = $("#answer").val().trim();
 
@@ -51,42 +53,49 @@ $(document).ready(function () {
 
         submitCard(card)
             .then($("#card-form").trigger("reset"))
-            .then(() => {
-                if (lastCardId != 1) {
-                    getCards(deckId).then(renderTable(deck))
-                }
-            }) 
-
+            .then(() => getCards(deckId)
+                .then(renderTable(deck)))
     }
 
     const makeTableRow = card => {
         let id = card.id;
         let question = card.term;
-        let answer = card.answer;
+        let answer = card.def;
 
-        let editButton = $("<button>");
-        editBtn.text("EDIT");
-        editBtn.addClass("btn btn-warning m-1 p-1");
-        editButton.data("id", id);
+        // let editButton = $("<button>");
+        // editButton.text("EDIT");
+        // editButton.addClass("edit btn btn-warning m-1 p-1");
+        // // editButton.data("id", id);
 
-        let deleteButton = $("<button>");
-        deleteBtn.text("x");
-        deleteBtn.addClass("btn btn-danger m-1 p-1");
-        deleteButton.data("id", id);
+        // let deleteButton = $("<button>");
+        // deleteButton.text("x");
+        // deleteButton.addClass("delete btn btn-danger m-1 p-1");
+        // // deleteButton.data("id", id);
 
 
         let newRow = $("<tr>");
         newRow.data("id", id);
 
-        newRow.append(`<th scope="row">${id}</th><td>${question}</td><td>${answer}</td><td>${buttons}</td>`);
+        // newRow.append(`<th scope="row">${id}</th><td>${question}</td><td>${answer}</td>`);
+
+        newRow.append(`<th scope="row"><a style='cursor:pointer;'>${id}</a></td>`)
+        newRow.append(`<td><a style='cursor:pointer;' class='edit-term'>${question}</a></td>`)
+        newRow.append(`<td><a style='cursor:pointer;' class='edit-def'>${answer}</a></td>`)
+        newRow.append(`<td><a style='cursor:pointer;color:red' class='delete-card'>Delete</a></td>`)
+
         return newRow;
     }
 
     const renderTable = deck => {
+        $("#card-rows").empty();
         deck.forEach(card => {
-           let newRow = makeTableRow(card);
-           $("#card-rows").append(newRow);
+            let newRow = makeTableRow(card);
+            $("#card-rows").append(newRow);
         })
     }
+
+    $(".delete-card").on("click", function () {
+        let id = $(this).parent("").
+    })
 
 })

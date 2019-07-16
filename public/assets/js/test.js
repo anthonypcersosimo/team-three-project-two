@@ -1,8 +1,75 @@
 $(document).ready(function () {
-    let deck;
-    const getCards = deckId => $.get("/api/flashcards/deck/" + deckId, response => deck = response)
-    getCards(1).then(() => console.log(deck));
-    // $.get("/api/flashcards/deck/1", function(result) {
-    //     console.log(result)
-    // })
+    const submitDeck = deckName => $.post("/api/decks", deckName, response => deckId = response)
+
+    const submitCard = flashcard => $.post("/api/flashcards/", flashcard, response => {
+        lastCardId = response
+        console.log(response)
+    });
+
+    const testDecks = [
+        { deck_name: "test1" },
+        { deck_name: "test2" },
+        { deck_name: "test3" }
+    ];
+
+    const testCards = [
+        {
+            deck_name: "test1",
+            term: "testa",
+            def: "testa",
+            DeckId: 1
+        },
+        {
+            deck_name: "test1",
+            term: "testa",
+            def: "testa",
+            DeckId: 1
+        },
+        {
+            deck_name: "test1",
+            term: "testa",
+            def: "testa",
+            DeckId: 1
+        },
+        {
+            deck_name: "test2",
+            term: "testb",
+            def: "testb",
+            DeckId: 2
+        },
+        {
+            deck_name: "test2",
+            term: "testb",
+            def: "testb",
+            DeckId: 2
+        },
+        {
+            deck_name: "test2",
+            term: "testb",
+            def: "testb",
+            DeckId: 2
+        },
+        {
+            deck_name: "test3",
+            term: "testc",
+            def: "testc",
+            DeckId: 3
+        },
+        {
+            deck_name: "test3",
+            term: "testc",
+            def: "testc",
+            DeckId: 3
+        },
+        {
+            deck_name: "test3",
+            term: "testc",
+            def: "testc",
+            DeckId: 3
+        },
+    ]
+
+    testDecks.forEach(deck => submitDeck(deck))
+    testCards.forEach(card => submitCard(card))
+
 })
