@@ -28,8 +28,4 @@ module.exports = function(app) {
   app.get("/form", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/addForm.html"));
   });
-  app.get("/test", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/test.html"));
-  });
-
 };
