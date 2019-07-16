@@ -7,12 +7,25 @@ $(document).ready(function () {
     $("#card-form").submit(event => handleCardSubmit(event));
     $("#deck-form").submit(event => handleDeckSubmit(event));
 
+
+    var url = window.location.search;
+    // Sets a flag for whether or not we're updating a post to be false initially
+    // var updating = false;
+
+    // If we have this section in our url, we pull out the post id from the url
+    // In '?post_id=1', postId is 1
+    
     const getCards = deckId => $.get("api/flashcards/deck/" + deckId, response => {
         deck = response;
         console.log("deck response", deck)
         renderTable(deck)
     });
-
+    
+    if (url.indexOf("?deck_id=") !== -1) {
+        deckId = url.split("=")[1];
+        console.log(deckId)
+        getCards(deckId);
+    }
     const deleteCard = cardId => {
         $.ajax({
             method: "DELETE",
@@ -67,7 +80,7 @@ $(document).ready(function () {
         }).then(response => console.log(response))
             .then(() => getCards(deckId)
                 .then(renderTable(deck)))
-    }    
+    }
 
     const makeTableRow = card => {
         let id = card.id;
@@ -90,7 +103,7 @@ $(document).ready(function () {
         deck.forEach(card => {
             let newRow = makeTableRow(card);
             $("#card-rows").append(newRow);
-            
+
         });
     };
 
@@ -103,7 +116,7 @@ $(document).ready(function () {
         let id = $(this).parent("td").parent("tr").data("id")
         let placeholder = $(this).text();
         $(this).parent("td").html(`<form id="form-term"><input type="text" id="input-term" value="${placeholder}"></form>`);
-   
+
         $(`#form-term`).submit(event => {
             let card = {
                 id: id,
@@ -125,7 +138,7 @@ $(document).ready(function () {
                 id: id,
                 def: $("#input-def").val().trim()
             };
-        
+
             handleRowChange(event, card);
         });
     });
