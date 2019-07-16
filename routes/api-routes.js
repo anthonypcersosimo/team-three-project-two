@@ -26,7 +26,7 @@ module.exports = function (app) {
             DeckId: req.body.DeckId
         })
             .then(function (dbFlashcard) {
-                res.json(dbFlashcard);
+                res.json(dbFlashcard.id);
             });
     });
 
