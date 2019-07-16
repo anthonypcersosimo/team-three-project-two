@@ -7,24 +7,15 @@ $(document).ready(function () {
     $("#card-form").submit(event => handleCardSubmit(event));
     $("#deck-form").submit(event => handleDeckSubmit(event));
     $("#complete").click(event => handleFinish(event));
-    $("#back-decks").click(event => {
-        event.preventDefault();
-        window.location.href = '/display'
-    });
-
-    $("#study-this").click(event => {
-        event.preventDefault();
-        window.location.href = '/card?deck_id=' + deckId;
-    });
 
     var url = window.location.search;
-    
+
     const getCards = deckId => $.get("api/flashcards/deck/" + deckId, response => {
         deck = response;
         console.log("deck response", deck)
         renderTable(deck)
     });
-    
+
     if (url.indexOf("?deck_id=") !== -1) {
         deckId = url.split("=")[1];
         console.log(deckId)
@@ -56,9 +47,7 @@ $(document).ready(function () {
 
         submitCard(card)
             .then($("#card-form").trigger("reset"))
-            .then(() => window.location.href = "/display")
-            .then($("#complete").click(event => handleFinish(event)));
-
+            .then(() => window.location.href = "/display");
     }
 
     const submitDeck = deckName => $.post("/api/decks", deckName, response => deckId = response);
@@ -136,6 +125,15 @@ $(document).ready(function () {
     $(document).on("click", ".delete-card", function () {
         let id = $(this).parent("td").parent("tr").data("id")
         deleteCard(id)
+    });
+
+
+    $(document).on("click", "#back-decks", function () {
+        window.location.href = '/display'
+    });
+
+    $(document).on("click", "#study-this", function () {
+        window.location.href = '/card?deck_id=' + deckId;
     });
 
     $(document).on("click", ".edit-term", function () {

@@ -77,6 +77,7 @@ $(document).ready(function() {
       "margin-top":
       "-15px"
     });
+    
     var newPostCardBody = $("<div>");
     newPostCardBody.addClass("card-body");
     var newPostBody = $("<p>");
@@ -110,12 +111,16 @@ $(document).ready(function() {
     else if (e.target.className.includes('new-deck')) {
       window.location.href = "/form";
     }
+    else if (e.target.className.includes('card')) {
+      let deckId = e.target.id
+      window.location.href = '/card?deck_id=' + deckId;
+    }
   });
   
-  $(document).on("click", ".card", function () {
-    deckId = $(this).parent("div").data("id");
-    console.log(deckId)
-  })
+  // $(document).on("click", ".card", function () {
+  //   deckId = $(this).parent().data("id");
+  //   console.log(deckId)
+  // })
     
   handlePostDelete = (e) => {
     var target = e.id;
