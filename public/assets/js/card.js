@@ -12,13 +12,12 @@ $(document).ready(function() {
 function roll() {
     $('.roll-header-inner').toggleClass('rolled');
     setTimeout(function(){ flip(); }, 0500);
-    };
+};
 
 // changes the class of the card face which animates the flip and toggles the side shown
 function flip() {
     $('.flip-card-inner').toggleClass('flipped');
-    setTimeout(function(){ alert("Hello"); }, 3000);
-    };
+};
 
 
 // Questions I have:
