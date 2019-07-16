@@ -6,6 +6,10 @@ $(document).ready(function() {
   // $(document).on("click", "button.delete", handlePostDelete);
   // $(document).on("click", "button.edit", handlePostEdit);
   var decks;
+  var newDeckBtn = $("<button>");
+  newDeckBtn.text("New Deck")
+  newDeckBtn.addClass("new-deck btn btn-primary deck-btn");
+  deckHeader.append("<span>Create a new deck: </span>", newDeckBtn);
   
     // This function grabs decks from the database and updates the view
     getDecks = () => {
@@ -13,7 +17,7 @@ $(document).ready(function() {
             console.log("Decks", data);
             decks = data;
             if (decks.length > 0) {
-                initializeRows();
+                initializeRows(decks);
             }
 
             else {
@@ -37,7 +41,7 @@ $(document).ready(function() {
     getDecks();
     // InitializeRows handles appending all of our constructed post HTML inside
     // deckContainer
-    initializeRows = () => {
+    initializeRows = (decks) => {
       deckContainer.empty();
       var postsToAdd = [];
       for (var i = 0; i < decks.length; i++) {
@@ -56,11 +60,8 @@ $(document).ready(function() {
       var newPostCardHeading = $("<div>");
       newPostCardHeading.addClass("card-header");
       var deleteBtn = $("<button>");
-      var newDeckBtn = $("<button>");
       deleteBtn.text("x");
-      newDeckBtn.text("New Deck")
       deleteBtn.addClass("delete btn btn-danger deck-btn");
-      newDeckBtn.addClass("new-deck btn btn-primary deck-btn");
       var editBtn = $("<button>");
       editBtn.text("EDIT");
       editBtn.addClass("edit btn btn-default deck-btn");
@@ -85,7 +86,6 @@ $(document).ready(function() {
       newPostTitle.append(newPostDate);
       newPostCardHeading.append(deleteBtn);
       newPostCardHeading.append(editBtn);
-      deckHeader.append("<span>Create a new deck: </span>", newDeckBtn);
       newPostCardHeading.append(newPostTitle);
       newPostCardHeading.append(newPostCategory);
       newPostCardBody.append(newPostBody);
@@ -97,11 +97,24 @@ $(document).ready(function() {
   
     // This function figures out which post we want to delete and then calls
     // deletePost
-    handlePostDelete = () => {
+    $(window).on("click", function(e){
+      if (e.target.className.includes('delete')) {
+        handlePostDelete();
+      }
+      else if (e.target.className.includes('edit')) {
+        handlePostEdit();
+      }
+      else if (e.target.className.includes('new-deck')) {
+        window.location.href = "/form";
+      }
+    });
+    
+    handlePostDelete = (e) => {
       var currentPost = $(this)
         .parent()
         .parent()
         .data("post");
+        console.log(e);
       deletePost(currentPost.id);
     }
   
