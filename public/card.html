@@ -12,43 +12,74 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="./assets/css/card.css">
 </head>
 
 <body>
-    <div class="box flex">
-        <div onClick="flip()" class="flip-card">
-            <div class="flip-card-inner">
+
+    <div class="box">
+
+        <div class="flip-card">
+            <h5 class="deck-title"> Javascript </h5>
+            <div onClick="flip()" class="flip-card-inner">
+
                 <div class="flip-card-front">
-                    <div class="card bg-primary mb-3">
-                        <div class="card-header bg-secondary">Question:</div>
+                    <div class="card">
+                        <div class="card-header" style="background: blue; color: white;">Question:</div>
                         <div class="card-body">
-                            <h5 class="card-title">Deck title</h5>
-                            <p class="card-text"> Insert question here </p>
+                            <p class="card-text"> What is a function? </p>
                         </div>
                     </div>
                 </div>
+
                 <div class="flip-card-back">
-                    <div class="card bg-secondary mb-3">
-                        <div class="card-header bg-primary">Answer:</div>
+                    <div class="card">
+                        <div class="card-header" style="background: blue; color: red;">Answer:</div>
                         <div class="card-body">
-                            <h5 class="card-title">Deck title</h5>
-                            <p class="card-text"> Insert answer here </p>
+                            <p class="card-text"> </p>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="controls">
+                <button type="button" class="last btn btn-danger">Last</button>
+                <button onClick="flip()" type="button" class="flip btn btn-danger">Flip</button>
+                <button type="button" class="next btn btn-danger">Next</button>
+            </div>
+
         </div>
 
 
-
-
         <!-- </div> -->
-        <script src="https://code.jquery.com/jquery-3.4.1.js"
-            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-latest.js"></script>
         <script src="./assets/js/card.js" async defer></script>
+        <!-- bootstrap  -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
 </body>
 
 </html>
+
+<!-- for James:
+
+i think that these might be good steps to move forward.
+
+	1. add some buttons: back, forward, perhaps a flip button as well might be more intuitive?
+	
+	2. on page load call the api/decks/id endpoint with a hard coded id# for now, set an array to the data returned.  that array will be the deck of cards.
+		
+	3.use a global variable to keep track of the currentcard's id (number).
+		
+	4. maybe have a "handle card change" type function that takes a variable to indicate forward or back (from the click event), and accesses the global "current card" variable. then use if statement to either increment or decrement the CurrentCard variable and then re-render cardArray[currentCard]
+	
+ -->
