@@ -19,13 +19,11 @@ function flip() {
 };
 
 
-// need way to get deck name and display in deck title
+// Questions I have:
 
-// need way to get card from selected deck and display question on question side of card/
+// #1) When a user selects a deck at the previous screen, what tells my files what was selected so they know what to load?
 
-// need way to get card from selected deck and display answer on answer side of card
+// #2) How do I take the selected deck and split into individual pairings of questions/answers (single card) and what becomes the card identifer? (for going back and forth through the deck)
 
-// need way to get last card
 
-// need way to get next card
 
