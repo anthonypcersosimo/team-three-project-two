@@ -1,17 +1,17 @@
 $(document).ready(function() {
-    // deckContainer holds all of our decks
-    var deckContainer = $(".deck-container");
-    // Click events for the edit and delete buttons
-    // $(document).on("click", "button.delete", handlePostDelete);
-    // $(document).on("click", "button.edit", handlePostEdit);
-    var decks;
+  // deckContainer holds all of our decks
+  var deckContainer = $(".deck-container");
+  var deckHeader = $("#deck-header");
+  // Click events for the edit and delete buttons
+  // $(document).on("click", "button.delete", handlePostDelete);
+  // $(document).on("click", "button.edit", handlePostEdit);
+  var decks;
   
     // This function grabs decks from the database and updates the view
     getDecks = () => {
         $.get("/api/decks", function(data) {
             console.log("Decks", data);
             decks = data;
-            console.log(decks)
             if (decks.length > 0) {
                 initializeRows();
             }
@@ -48,16 +48,22 @@ $(document).ready(function() {
   
     // This function constructs a post's HTML
     createNewRow = (post) => {
+      console.log(post);
+      console.log(post.deck_name);
+
       var newPostCard = $("<div>");
       newPostCard.addClass("card");
       var newPostCardHeading = $("<div>");
       newPostCardHeading.addClass("card-header");
       var deleteBtn = $("<button>");
+      var newDeckBtn = $("<button>");
       deleteBtn.text("x");
-      deleteBtn.addClass("delete btn btn-danger");
+      newDeckBtn.text("New Deck")
+      deleteBtn.addClass("delete btn btn-danger deck-btn");
+      newDeckBtn.addClass("new-deck btn btn-primary deck-btn");
       var editBtn = $("<button>");
       editBtn.text("EDIT");
-      editBtn.addClass("edit btn btn-default");
+      editBtn.addClass("edit btn btn-default deck-btn");
       var newPostTitle = $("<h2>");
       var newPostDate = $("<small>");
       var newPostCategory = $("<h5>");
@@ -71,14 +77,15 @@ $(document).ready(function() {
       var newPostCardBody = $("<div>");
       newPostCardBody.addClass("card-body");
       var newPostBody = $("<p>");
-      newPostTitle.text(post.title + " ");
+      newPostTitle.text("Deck Name: " + post.deck_name);
       newPostBody.text(post.body);
-      // var formattedDate = new Date(post.createdAt);
-      // formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
-      // newPostDate.text(formattedDate);
+      var formattedDate = new Date(post.createdAt);
+      formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
+      newPostCardBody.text("Last edited: " + post.updatedAt );
       newPostTitle.append(newPostDate);
       newPostCardHeading.append(deleteBtn);
       newPostCardHeading.append(editBtn);
+      deckHeader.append("<span>Create a new deck: </span>", newDeckBtn);
       newPostCardHeading.append(newPostTitle);
       newPostCardHeading.append(newPostCategory);
       newPostCardBody.append(newPostBody);
@@ -107,7 +114,7 @@ $(document).ready(function() {
         .data("post");
       window.location.href = "/cms?post_id=" + currentPost.id;
     }
-  
+    
     // This function displays a message when there are no decks
     displayEmpty = () => {
       deckContainer.empty();
