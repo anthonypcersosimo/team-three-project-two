@@ -14,6 +14,14 @@ $(document).ready(function () {
         deck = response;
         console.log(deck)
     })
+    const deleteCard = cardId => {
+        $.ajax({
+            method: "DELETE",
+            url: "api/flashcards/" + cardId
+        }).then(response => console.log(response))
+            .then(() => getCards(deckId)
+                .then(renderTable(deck)))
+    }
 
     const submitDeck = deckName => $.post("/api/decks", deckName, response => deckId = response)
 
@@ -53,8 +61,8 @@ $(document).ready(function () {
 
         submitCard(card)
             .then($("#card-form").trigger("reset"))
-            .then(() => getCards(deckId)    
-            .then(renderTable(deck)))
+            .then(() => getCards(deckId)
+                .then(renderTable(deck)))
     }
 
     const makeTableRow = card => {
@@ -82,10 +90,32 @@ $(document).ready(function () {
             $("#card-rows").append(newRow);
         })
     }
+
     $(document).on("click", ".delete-card", function () {
         console.log("click delete")
         let id = $(this).parent("td").parent("tr").data("id")
-        console.log("ID: " + id)
+        console.log("delete ID: " + id)
+        deleteCard(id)
+        // .then(() => getCards(deckId)
+        //     .then(renderTable(deck)))
+
     })
+    $(document).on("click", ".edit-term", function () {
+        console.log("click edit term")
+        let id = $(this).parent("td").parent("tr").data("id")
+        console.log("term ID: " + id)
+        let placeholder = $(this).find("td").innerHTML
+        // let placeholder = $(this).innerText
+        console.log(placeholder)
+        $(this).parent("td").html(`<form><input type="text" id="term-${id}" value="${placeholder}"></form>`)
+
+    })
+    $(document).on("click", ".edit-def", function () {
+        console.log("click edit def")
+        let id = $(this).parent("td").parent("tr").data("id")
+        console.log("def ID: " + id)
+
+    })
+
 
 })
