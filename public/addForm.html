@@ -21,6 +21,8 @@
                 <h2>Build a Deck</h2>
                 <div style="justify-content: center; text-align: center; padding: 20px;">
                     <!-- <a class="btn btn-light" href="#" style="padding: 12px; font-weight: bold; color: rgb(230, 55, 2)">New Deck</a> -->
+                    <button id="back-decks" class="btn btn-primary">Back to Decks</button>
+                    <button id="study-this" class="btn btn-primary">Study this Deck</button>
                 </div>
             </div>
         </div>
@@ -38,7 +40,7 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
-                <form id="card-form" class="hidden">
+                <form id="card-form" class="hidden mt-4">
                     <div class="form-group">
                         <label for="question">Question</label>
                         <textarea class="form-control" id="question" rows="3"></textarea>
@@ -53,7 +55,7 @@
             </div>
         </div>
         <div class="row">
-            <table class="table">
+            <table class="table m-4">
                 <thead>
                     <tr>
                         <td scope="col">#</td>
