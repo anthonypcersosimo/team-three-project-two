@@ -97,7 +97,7 @@ $(document).ready(function () {
                 .then(renderTable(deck)))
     }
 
-    const makeTableRow = card => {
+    const makeTableRow = (card, index) => {
         let id = card.id;
         let question = card.term;
         let answer = card.def;
@@ -105,7 +105,7 @@ $(document).ready(function () {
         let newRow = $("<tr>");
         newRow.data("id", id);
 
-        newRow.append(`<th scope="row"><a id="th-${id}" style='cursor:pointer;'>${id}</a></td>`)
+        newRow.append(`<th scope="row"><a class="row-head" id="th-${id}">${index + 1}</a></td>`)
         newRow.append(`<td><a style='cursor:pointer;' class='edit-term'>${question}</a></td>`)
         newRow.append(`<td><a style='cursor:pointer;' class='edit-def'>${answer}</a></td>`)
         newRow.append(`<td class="delete-row"><a style='cursor:pointer;color:red' class='delete-card'>Delete</a></td>`)
@@ -115,10 +115,10 @@ $(document).ready(function () {
 
     const renderTable = deck => {
         $("#card-rows").empty();
-        deck.forEach(card => {
-            let newRow = makeTableRow(card);
+        deck.forEach((card, index) => {
+            let newRow = makeTableRow(card, index);
+            console.log(index + 1)
             $("#card-rows").append(newRow);
-
         });
     };
 
@@ -126,7 +126,6 @@ $(document).ready(function () {
         let id = $(this).parent("td").parent("tr").data("id")
         deleteCard(id)
     });
-
 
     $(document).on("click", "#back-decks", function () {
         window.location.href = '/display'
