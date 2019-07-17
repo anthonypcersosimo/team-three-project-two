@@ -19,12 +19,40 @@
 </head>
 
 <body>
-
+    <!-- HTML Containing Header -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <img src="./assets/img/codex.png" alt="Group Logo" id="logo-img">
+        <a class="navbar-brand" href="/">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <span class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Developers
+                </span>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="https://github.com/anthonypcersosimo">Anthony</a>
+                <a class="dropdown-item" href="https://github.com/Jimbomoso">James</a>
+                <a class="dropdown-item" href="https://github.com/kylewhittemore">Kyle</a>
+                <a class="dropdown-item" href="https://github.com/dgurung01">Dev</a>
+                </div>
+            </li>
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="#">Features</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+            </li> -->
+            </ul>
+        </div>
+    </nav>
+    <!-- End Header -->
     <div class="box">
-
         <div class="flip-card">
-            <h5 class="deck-title"> </h5>
 
+            <h5 class="deck-title"> </h5>
             <div onClick="roll()" class="roll-header-inner">
                 <div class="question-side">
                     <div class="card-header" style="background: blue; color: white;">Question:</div>
@@ -35,7 +63,6 @@
                 </div>
 
             </div>
-
             <div onClick="roll()" class="flip-card-inner">
 
                 <div class="flip-card-front">
@@ -61,6 +88,15 @@
                 <button onClick="roll()" type="button" class="flip btn btn-danger">Flip</button>
                 <button type="button" class="next btn btn-danger">Next</button>
             </div>
+          
+            <div class="controls">
+                <button type="button" class="last btn btn-danger">Last</button>
+                <button onClick="roll()" type="button" class="flip btn btn-danger">Flip</button>
+                <button type="button" class="next btn btn-danger">Next</button>
+            </div>
+          
+        </div>
+    </div>
 
         </div>
 
@@ -68,20 +104,7 @@
         <!-- </div> -->
         <script src="./assets/js/card.js" async defer></script>
         
+
 </body>
 
 </html>
-
-<!-- for James:
-
-i think that these might be good steps to move forward.
-
-	1. add some buttons: back, forward, perhaps a flip button as well might be more intuitive?
-	
-	2. on page load call the api/decks/id endpoint with a hard coded id# for now, set an array to the data returned.  that array will be the deck of cards.
-		
-	3.use a global variable to keep track of the currentcard's id (number).
-		
-	4. maybe have a "handle card change" type function that takes a variable to indicate forward or back (from the click event), and accesses the global "current card" variable. then use if statement to either increment or decrement the CurrentCard variable and then re-render cardArray[currentCard]
-	
- -->
