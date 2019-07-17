@@ -54,11 +54,12 @@ $(document).ready(function() {
   createNewRow = (post) => {
     console.log(post);
 
-    var newPostCard = $("<div style='cursor:pointer;'>");
+    var newPostCard = $("<div>");
     newPostCard.addClass("card");
     newPostCard.attr("id", post.id);
     var newPostCardHeading = $("<div>");
     newPostCardHeading.addClass("card-header");
+    newPostCardHeading.attr("id", post.id);
     var deleteBtn = $("<button>");
     deleteBtn.text("x");
     deleteBtn.addClass("delete btn btn-danger deck-btn");
@@ -67,7 +68,11 @@ $(document).ready(function() {
     editBtn.text("EDIT");
     editBtn.addClass("edit btn btn-default deck-btn");
     editBtn.attr("id", post.id);
-    var newPostTitle = $("<h2>");
+    var studyBtn = $("<button>");
+    studyBtn.text("STUDY");
+    studyBtn.addClass("study btn btn-warning deck-btn");
+    studyBtn.attr("id", post.id);
+    var newPostTitle = $(`<h2>`);
     var newPostDate = $("<small>");
     var newPostCategory = $("<h5>");
     newPostCategory.text(post.category);
@@ -77,8 +82,10 @@ $(document).ready(function() {
       "margin-top":
       "-15px"
     });
+
     var newPostCardBody = $("<div>");
     newPostCardBody.addClass("card-body");
+    newPostCardBody.attr("id", post.id);
     var newPostBody = $("<p>");
     newPostTitle.text("Deck Name: " + post.deck_name);
     newPostBody.text(post.body);
@@ -88,6 +95,7 @@ $(document).ready(function() {
     newPostTitle.append(newPostDate);
     newPostCardHeading.append(deleteBtn);
     newPostCardHeading.append(editBtn);
+    newPostCardHeading.append(studyBtn);
     newPostCardHeading.append(newPostTitle);
     newPostCardHeading.append(newPostCategory);
     newPostCardBody.append(newPostBody);
@@ -110,12 +118,16 @@ $(document).ready(function() {
     else if (e.target.className.includes('new-deck')) {
       window.location.href = "/form";
     }
+    else if (e.target.className.includes('study')) {
+      let deckId = e.target.id
+      window.location.href = '/card?deck_id=' + deckId;
+    }
   });
   
-  $(document).on("click", ".card", function () {
-    deckId = $(this).parent("div").data("id");
-    console.log(deckId)
-  })
+  // $(document).on("click", ".card", function () {
+  //   deckId = $(this).parent().data("id");
+  //   console.log(deckId)
+  // })
     
   handlePostDelete = (e) => {
     var target = e.id;
