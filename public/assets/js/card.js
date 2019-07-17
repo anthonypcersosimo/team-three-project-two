@@ -1,35 +1,62 @@
-$(document).ready(function() {
+$(document).ready(function () {
     let deckId;
-    let deckName;
-    let deck = []; 
-    
+    let deck = [];
+    let currentCard;
+    let count = 0;
     // assigns the url from the lead in page 
     let url = window.location.search;
-    
+
     const getCards = deckId => $.get("api/flashcards/deck/" + deckId, response => {
         deck = response;
-        console.log("deck response", deck)
-        renderTable(deck)
+        console.log("response", deck)
+        displayCard(deck);
     });
+
     // grabs the deck id from the lead in page's url and assigns it to deckID
     if (url.indexOf("?deck_id=") !== -1) {
         deckId = url.split("=")[1];
-        console.log(deckId)
-        $("#deck-form").addClass("hidden");
+        console.log(deckId);
         getCards(deckId);
     };
 
-    function roll() {
-        $('.roll-header-inner').toggleClass('rolled');
-        setTimeout(function(){ flip(); }, 0500);
-    };
 
-    // changes the class of the card face which animates the flip and toggles the side shown
-    function flip() {
-        $('.flip-card-inner').toggleClass('flipped');
-    };
+
+    function displayCard(deck) {
+        let title = $('.deck-title')
+        let question = $('.card-question-text')
+        let answer = $('.card-answer-text')
+        title.text(deck[count].deck_name)
+        question.text(deck[count].term)
+        answer.text(deck[count].def)
+    }
+
+    $('.next').on('click', function () {
+        if (count === deck.length - 1) return;
+        count++;
+        displayCard(deck);
+    })
+
+    $('.last').on('click', function () {
+        if (count === 0) return;
+        count--;
+        displayCard(deck);
+    })
 
 });
+
+function roll() {
+    $('.roll-header-inner').toggleClass('rolled');
+    setTimeout(function () { flip(); }, 0500);
+};
+
+// changes the class of the card face which animates the flip and toggles the side shown
+function flip() {
+    $('.flip-card-inner').toggleClass('flipped');
+};
+
+
+
+
 
 // Questions I have:
 
