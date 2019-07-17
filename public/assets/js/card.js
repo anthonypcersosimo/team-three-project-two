@@ -1,7 +1,6 @@
 $(document).ready(function () {
     let deckId;
     let deck = [];
-    let currentCard;
     let count = 0;
     // assigns the url from the lead in page 
     let url = window.location.search;
