@@ -8,8 +8,8 @@
     <title>Codex | Flashcard App</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/card.css">
 
     <script src="https://code.jquery.com/jquery.js"></script>
@@ -25,40 +25,34 @@
             <h5 class="deck-title"> </h5>
             <div onClick="roll()" class="roll-header-inner">
                 <div class="question-side">
-                    <div class="card-header" style="background: blue; color: white;">Question:</div>
+                    <div class="heading" style="background: blue; color: white;">Question:</div>
 
                 </div>
                 <div class="answer-side">
-                    <div class="card-header" style="background: blue; color: white;">Answer:</div>
+                    <div class="heading" style="background: blue; color: white;">Answer:</div>
                 </div>
 
             </div>
             <div onClick="roll()" class="flip-card-inner">
 
                 <div class="flip-card-front">
-                    <div class="card">
+                    <div class="currentCard">
 
-                        <div class="card-body">
+                        <div class="currentCard-body">
                             <p class="card-question-text"> </p>
                         </div>
                     </div>
                 </div>
 
                 <div class="flip-card-back">
-                    <div class="card">
-                        <div class="card-body">
+                    <div class="currentCard">
+                        <div class="currentCard-body">
                             <p class="card-answer-text"> </p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="controls">
-                <button type="button" class="last btn btn-danger">Last</button>
-                <button onClick="roll()" type="button" class="flip btn btn-danger">Flip</button>
-                <button type="button" class="next btn btn-danger">Next</button>
-            </div>
-          
             <div class="controls">
                 <button type="button" class="last btn btn-danger">Last</button>
                 <button onClick="roll()" type="button" class="flip btn btn-danger">Flip</button>

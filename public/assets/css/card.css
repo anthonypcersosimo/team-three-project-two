@@ -4,7 +4,7 @@
     align-items: center;
     height: 100vh;
   }
-  .card-header {
+  .heading {
     background: gray;
     padding: 1%;
     font-size: 18px;
@@ -99,11 +99,6 @@
       height: 100%;
       backface-visibility: hidden;
       background: lightgray;
-    }
-
-    .flip-card-body {
-      height: 100%;
-      flex-grow: 1;
     }
   
     .roll-header-inner.rolled {
