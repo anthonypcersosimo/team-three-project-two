@@ -1,116 +1,98 @@
 .box {
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  .heading {
-    background: gray;
-    padding: 1%;
-    font-size: 18px;
-  }
-  
-  .deck-title {
-    background:gray;
-    padding: 5%;
-    margin: 0;
-    text-align: center;
-    color: white;
-    font-size: 24px;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 
-  .card-text {
-    opacity: .6;
-    padding:1%;
-    margin: 1%;
-    margin: 0;
-    line-height: 1.5em;
-    color: black;
-  }
+.deck-title {
+  background: gray;
+  padding: 5%;
+  margin: 0;
+  text-align: center;
+  color: white;
+  font-size: 36px;
+}
 
-  .controls {
-    display: flex;
-    width: 100%;
-    justify-content: space-evenly;
-    position: inherit;
-  }
+.card-text {
+  padding: 1%;
+  margin: 1%;
+  margin: 0;
+  line-height: 1.5em;
+  color: black;
+}
 
-  .controls button {
-    margin-top: 10%;
-    width: 25%;
-    position: relative;
-    flex-grow: 0;
-    background: red;
-    color: white;
-    height: 50px;
-  }
-  
-  .flip-card {
-      background-color: transparent;
-      /* width: 600px;
-      height: 300px; */
-      perspective: 1000px;
-    }
-      
-    .flip-card-inner {
-      position: relative;
-      width: 600px;
-      height: 200px;
-      text-align: center;
-      transition: transform 1s;
-      transform-style: preserve-3d;
-      box-shadow: 0 40px 18px 0 rgba(59, 59, 56, 0.2);
-    }
+.controls {
+  display: flex;
+  justify-content: space-evenly;
+}
 
-    .flip-card-front, .flip-card-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      background: lightgray;
-    }
+.controls button {
+  margin-top: 10%;
+  width: 25%;
+  position: relative;
+  background: red;
+  color: white;
+  height: 50px;
+}
 
-    .flip-card-body {
-      height: 100%;
-      flex-grow: 1;
-    }
-  
-    .flip-card-inner.flipped {
-      transform: rotateY(180deg);
-    }
-    
-    .flip-card-back {
-      transform: rotateY(180deg);
-    }
+.flip-card {
+  perspective: 1000px;
+}
 
-    .roll-header-inner {
-      position: relative;
-      width: 100%;
-      height: 2em;
-      text-align: center;
-      transition: transform 0.5s;
-      transform-style: preserve-3d;
-      box-shadow: 0 40px 18px 0 rgba(59, 59, 56, 0.2);
-    }
+.flip-card-inner {
+  width: 600px;
+  height: 200px;
+  text-align: center;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  box-shadow: 0 40px 18px 0 rgba(59, 59, 56, 0.2);
+}
 
-    .question-side, .answer-side {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      background: lightgray;
-    }
-  
-    .roll-header-inner.rolled {
-      transform: rotateX(180deg);
-    }
-  
-    .answer-side {
-      transform: rotateX(180deg);
-    }
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background: lightgray;
+}
 
-  
-  
-   
-  
-  
+.flip-card-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+.roll-header-inner {
+  /* position: relative; */
+  width: 100%;
+  height: 35px;
+  text-align: center;
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+}
+
+.heading {
+  height: 100%;
+  font-size: 24px;
+}
+
+.question-side,
+.answer-side {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background: lightgray;
+}
+
+.roll-header-inner.rolled {
+  transform: rotateX(180deg);
+}
+
+.answer-side {
+  transform: rotateX(180deg);
+}
