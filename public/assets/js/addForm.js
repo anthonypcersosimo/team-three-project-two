@@ -39,7 +39,7 @@ $(document).ready(function () {
         if (!term || !def) return;
 
         let card = {
-            deck_name: deckName,
+            // deck_name: deckName,
             term: $("#question").val().trim(),
             def: $("#answer").val().trim(),
             DeckId: deckId
@@ -57,9 +57,12 @@ $(document).ready(function () {
     const handleDeckSubmit = event => {
         event.preventDefault();
         deckName = $("#deck-name").val().trim();
-        if (!deckName) return;
+        deckCategory = $('#deck-category').val().trim();
+
+        if (!deckName || !deckCategory) return;
         let deck = {
-            deck_name: deckName
+            deck_name: deckName,
+            category: deckCategory
         }
         submitDeck(deck)
             .then($("#deck-form").trigger("reset"))
@@ -75,7 +78,7 @@ $(document).ready(function () {
         if (!term || !def) return;
 
         let card = {
-            deck_name: deckName,
+            // deck_name: deckName,
             term: $("#question").val().trim(),
             def: $("#answer").val().trim(),
             DeckId: deckId

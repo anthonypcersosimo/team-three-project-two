@@ -1,12 +1,12 @@
 module.exports = function (sequelize, DataTypes) {
     var Flashcard = sequelize.define("Flashcard", {
-        deck_name: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                len: [1]
-            }
-        },
+        // deck_name: {
+        //     type: DataTypes.STRING,
+        //     allowNull: false,
+        //     validate: {
+        //         len: [1]
+        //     }
+        // },
         term: {
             type: DataTypes.TEXT,
             allowNull: false,
@@ -16,6 +16,7 @@ module.exports = function (sequelize, DataTypes) {
         },
         def: {
             type: DataTypes.STRING,
+            allowNull: false,
             validate: {
                 len: [1]
             }
