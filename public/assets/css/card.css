@@ -55,7 +55,7 @@
     .flip-card-inner {
       position: relative;
       width: 600px;
-      height: 300px;
+      height: 200px;
       text-align: center;
       transition: transform 1s;
       transform-style: preserve-3d;
