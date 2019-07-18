@@ -3,7 +3,6 @@ $(document).ready(function () {
   const getCategories = () => {
     $.get('/api/decks', decks => {
       const distinctCategories = [...new Set(decks.map(deck => deck.category))]
-      console.log(distinctCategories);
       renderCategoryDD(distinctCategories)
     })
   }
@@ -170,15 +169,10 @@ $(document).ready(function () {
     console.log(category)
     getDecks(category)
   });
+
   $(document).on("click", "#no-filter-link", function () {
     getDecks(category)
   });
-
-
-  // $(document).on("click", ".card", function () {
-  //   deckId = $(this).parent().data("id");
-  //   console.log(deckId)
-  // })
 
   handlePostDelete = (e) => {
     var target = e.id;

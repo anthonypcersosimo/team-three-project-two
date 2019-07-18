@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Codex | Flashcard App</title>
+  <!-- Latest compiled and minified CSS & JS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/flatly/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/index.css" media="screen" title="no title">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <!-- HTML Containing Header -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <img src="./assets/img/codex.png" alt="Group Logo" id="logo-img">
+
+    <!-- kyle moved this into the ul to keep it responsive -->
+    <!-- <a class="navbar-brand" href="/">Home</a> -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li><a class="navbar-brand" href="/">Home</a></li>
+        <li class="nav-item dropdown">
+          <span class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Developers
+          </span>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="https://github.com/anthonypcersosimo">Anthony</a>
+            <a class="dropdown-item" href="https://github.com/Jimbomoso">James</a>
+            <a class="dropdown-item" href="https://github.com/kylewhittemore">Kyle</a>
+            <a class="dropdown-item" href="https://github.com/dgurung01">Dev</a>
+          </div>
+        </li>
+        <li id="filter-dd" class="hidden nav-item dropdown">
+          <span class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Category Filter
+          </span>
+          <div class="dropdown-menu" id="category-dd" aria-labelledby="navbarDropdownMenuLink">
+          </div>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="/form">Add a Deck</a></li>
+      </ul>
+    </div>
+  </nav>
+  <!-- End Header -->
+  <!-- <div class="container">
+    <div class="row mt-4">
+      <div class="col-md-12" id="deck-header">
+        <h2>Your decks are displayed here:</h2>
+      </div>
+    </div>
+    <div class="row" style="justify-content: center">
+      <div class="col-md-10 deck-container" style="border: 2px solid goldenrod; margin-top: 20px">
+      </div>
+    </div>
+  </div> -->
+
+  <!-- Custom Script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.0/moment.min.js" type="text/javascript"></script>
+  <script src="./assets/js/displayDecks.js" type="text/javascript"></script>
+
+</body>
+
+</html>

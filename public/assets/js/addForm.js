@@ -86,7 +86,7 @@ $(document).ready(function () {
 
     const submitDeck = deckName => $.post("/api/decks", deckName, response => {
         deckId = response
-        $("#study-this").attr("href", "/card?deck_id=" + deckId)
+        // $("#study-this").attr("href", "/card?deck_id=" + deckId)
         getDecks();
     });
 
@@ -172,8 +172,10 @@ $(document).ready(function () {
         window.location.href = '/display'
     });
 
-    $(document).on("click", "#study-this", function () {
+    $(document).on("click", "#study-this", function (event) {
+        event.preventDefault();
         window.location.href = '/card?deck_id=' + deckId;
+        console.log("attempt to go to study deck")
     });
 
     $(document).on("click", ".deck-link", function () {
