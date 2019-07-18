@@ -24,7 +24,7 @@ $(document).ready(function () {
 
   // This function grabs decks from the database and updates the view
   // catparam is the category parameter, if it is passed to the get decks fn (from the categories dd) only the decks from that category will be displayed
-  getDecks = (catParam) => {
+ const getDecks = (catParam) => {
 
     if (catParam) {
       route = "/api/decks/" + catParam;

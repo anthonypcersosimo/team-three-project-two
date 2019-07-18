@@ -3,6 +3,7 @@ $(document).ready(function () {
     let deckId;
     let deckName;
     let deck = [];
+    let decks = [];
 
     $("#card-form").submit(event => handleCardSubmit(event));
     $("#deck-form").submit(event => handleDeckSubmit(event));
@@ -16,6 +17,39 @@ $(document).ready(function () {
         renderTable(deck)
         $("#card-table").removeClass("hidden")
     });
+
+    const getDecks = (catParam) => {
+
+        if (catParam) {
+            route = "/api/decks/" + catParam;
+        } else {
+            route = "/api/decks"
+        }
+
+        $.get(route, function (data) {
+            console.log("Decks", data);
+            decks = data;
+            if (decks.length > 0) {
+                $("#decks-dd").removeClass("hidden");
+                renderDecksDD();
+            }
+        });
+    };
+
+    const renderDecksDD = () => {
+        $("#edit-deck-list").empty();
+        decks.forEach(deck => {
+            let newDDLink = $("<a>")
+            newDDLink.addClass("dropdown-item")
+            newDDLink.addClass("deck-link")
+            newDDLink.text(deck.deck_name)
+            newDDLink.data("deckId", deck.id);
+            console.log(newDDLink.data("deckId"))
+            $("#edit-deck-list").append(newDDLink)
+        })
+    }
+
+    getDecks();
 
     if (url.indexOf("?deck_id=") !== -1) {
         deckId = url.split("=")[1];
@@ -40,7 +74,6 @@ $(document).ready(function () {
         if (!term || !def) return;
 
         let card = {
-            // deck_name: deckName,
             term: $("#question").val().trim(),
             def: $("#answer").val().trim(),
             DeckId: deckId
@@ -54,6 +87,7 @@ $(document).ready(function () {
     const submitDeck = deckName => $.post("/api/decks", deckName, response => {
         deckId = response
         $("#study-this").attr("href", "/card?deck_id=" + deckId)
+        getDecks();
     });
 
     const submitCard = flashcard => $.post("/api/flashcards/", flashcard, response => lastCardId = response);
@@ -92,16 +126,6 @@ $(document).ready(function () {
             .then(() => getCards(deckId));
     };
 
-    // const handleRowChange = (card) => {
-    //     // event.preventDefault();
-    //     $.ajax({
-    //         method: "PUT",
-    //         url: "/api/flashcards",
-    //         data: card
-    //     }).then(response => console.log(response))
-    //         .then(() => getCards(deckId)
-    //             .then(renderTable(deck)))
-    // }
     const handleRowChange = (event, card) => {
         event.preventDefault();
         $.ajax({
@@ -152,6 +176,12 @@ $(document).ready(function () {
         window.location.href = '/card?deck_id=' + deckId;
     });
 
+    $(document).on("click", ".deck-link", function () {
+        let deckLinkId = $(this).data("deckId");
+        console.log(deckLinkId);
+        getCards(deckLinkId)
+    });
+
     $(document).on("click", ".edit-term", function () {
         let id = $(this).parent("td").parent("tr").data("id")
         let placeholder = $(this).parent("td").parent("tr").data("card").term
@@ -162,7 +192,7 @@ $(document).ready(function () {
                 id: id,
                 term: $("#input-term").val().trim()
             };
-            
+
             handleRowChange(event, card);
         });
         $(`#form-term`).submit((event) => {
@@ -170,7 +200,7 @@ $(document).ready(function () {
                 id: id,
                 term: $("#input-term").val().trim()
             };
-            
+
             handleRowChange(event, card);
         });
     });
@@ -185,7 +215,7 @@ $(document).ready(function () {
                 id: id,
                 def: $("#input-def").val().trim()
             };
-            
+
             handleRowChange(event, card);
         });
         $(`#form-def`).submit((event) => {
@@ -193,7 +223,7 @@ $(document).ready(function () {
                 id: id,
                 def: $("#input-def").val().trim()
             };
-            
+
             handleRowChange(event, card);
         });
     });
