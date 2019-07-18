@@ -18,6 +18,8 @@ $(document).ready(function() {
       decks = data;
       if (decks.length > 0) {
         initializeRows(decks);
+        $("#filter-dd").removeClass("hidden");
+        renderCategoryDD(decks)
       }
 
       else {
@@ -26,6 +28,25 @@ $(document).ready(function() {
     });
   };
   
+  // render categories uses the new Set functionality from es6 to return only the distinct category values from the array of decks
+  const renderCategoryDD = decks => {
+    const distinctCategories = [...new Set(decks.map(deck => deck.category))]
+    console.log(distinctCategories);
+    
+    distinctCategories.forEach(category => {
+      let newDDLink = $("<a>")
+      newDDLink.addClass("dropdown-item")
+      newDDLink.text(category)
+      // let newDDLink = $(`<a class="dropdown-item" href="">${category}</a>;`)
+      newDDLink.data("category", category);
+      $("#category-dd").append(newDDLink)
+
+    })
+
+
+  }
+
+
   // This function does an API call to delete decks
   deletePost = (id) => {
     $.ajax({
