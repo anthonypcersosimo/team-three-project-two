@@ -6,6 +6,16 @@
   flex-direction: column;
 }
 
+.navbar {
+  width: 100%;
+  height: 82px;
+}
+
+#logo-img {
+  height: 50px;
+  weight: 200px;
+}
+
 .deckTitle {
   display: flex;
   height: 40%;
