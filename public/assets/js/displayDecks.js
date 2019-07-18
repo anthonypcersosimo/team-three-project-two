@@ -1,7 +1,12 @@
 $(document).ready(function () {
-
-
-
+  const getCategories = () => {
+    $.get('/api/decks', decks => {
+      const distinctCategories = [...new Set(decks.map(deck => deck.category))]
+      console.log(distinctCategories);
+      renderCategoryDD(distinctCategories)
+    })
+  }
+  getCategories();
   // deckContainer holds all of our decks
   var deckContainer = $(".deck-container");
   var deckHeader = $("#deck-header");
@@ -40,11 +45,13 @@ $(document).ready(function () {
     });
   };
 
+
+
   // render categories uses the new Set functionality from es6 to return only the distinct category values from the array of decks
-  const renderCategoryDD = decks => {
+  const renderCategoryDD = distinctCategories => {
     $("#category-dd").empty();
-    const distinctCategories = [...new Set(decks.map(deck => deck.category))]
-    console.log(distinctCategories);
+    // const distinctCategories = [...new Set(decks.map(deck => deck.category))]
+    // console.log(distinctCategories);
 
     distinctCategories.forEach(category => {
       let newDDLink = $("<a>")
@@ -157,9 +164,9 @@ $(document).ready(function () {
   });
 
   $(document).on("click", ".category-link", function () {
-      let category = $(this).data("category")
-      console.log(category)
-      getDecks(category)
+    let category = $(this).data("category")
+    console.log(category)
+    getDecks(category)
   });
 
 
