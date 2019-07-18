@@ -1,11 +1,15 @@
 $(document).ready(function () {
-  let catParam;
+
+
+
   // deckContainer holds all of our decks
   var deckContainer = $(".deck-container");
   var deckHeader = $("#deck-header");
   // Click events for the edit and delete buttons
   // $(document).on("click", "button.delete", handlePostDelete);
   // $(document).on("click", "button.edit", handlePostEdit);
+
+
   var decks;
   var newDeckBtn = $("<button>");
   newDeckBtn.text("New Deck")
@@ -13,6 +17,7 @@ $(document).ready(function () {
   deckHeader.append("<span>Create a new deck: </span>", newDeckBtn);
 
   // This function grabs decks from the database and updates the view
+  // catparam is the category parameter, if it is passed to the get decks fn (from the categories dd) only the decks from that category will be displayed
   getDecks = (catParam) => {
 
     if (catParam) {
@@ -27,7 +32,6 @@ $(document).ready(function () {
       if (decks.length > 0) {
         initializeRows(decks);
         $("#filter-dd").removeClass("hidden");
-        renderCategoryDD(decks)
       }
 
       else {

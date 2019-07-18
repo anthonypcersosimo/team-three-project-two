@@ -50,7 +50,10 @@ $(document).ready(function () {
             .then(() => window.location.href = "/display");
     }
 
-    const submitDeck = deckName => $.post("/api/decks", deckName, response => deckId = response);
+    const submitDeck = deckName => $.post("/api/decks", deckName, response => {
+        deckId = response
+        $("#study-this").attr("href", "/card?deck_id=" + deckId)
+    });
 
     const submitCard = flashcard => $.post("/api/flashcards/", flashcard, response => lastCardId = response);
 
@@ -67,7 +70,9 @@ $(document).ready(function () {
         submitDeck(deck)
             .then($("#deck-form").trigger("reset"))
             .then($("#deck-form").addClass("hidden"))
-            .then($("#card-form").removeClass("hidden"));
+            .then($("#card-form").removeClass("hidden"))
+            // .then(console.log(deckId))
+            // .then($("#study-deck").attr("href", "/card?deck_id=" + deckId));
     };
 
     const handleCardSubmit = event => {
