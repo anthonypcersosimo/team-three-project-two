@@ -22,7 +22,7 @@ $(document).ready(function () {
         let title = $('.deckTitle')
         let question = $('.cardQuestionText')
         let answer = $('.cardAnswerText')
-        title.text(deck[count].deck_name)
+        title.text(deck[count].Deck.deck_name)
         question.text(deck[count].term)
         answer.text(deck[count].def)
     }

@@ -13,7 +13,7 @@
 
 #logo-img {
   height: 50px;
-  weight: 200px;
+  width: 200px;
 }
 
 .deckTitle {
@@ -23,9 +23,13 @@
   margin: 0;
   justify-content: center;
   align-items: center;
-  color: Black;
   font-size: 4vw;
+  font-family: 'Roboto Slab', serif;
+  font-weight: bolder;
+  color: white;
+  background-image: url('https://wallsheaven.com/photos/B630695770/400/html-website-structure.-technology-background.-it-coding-on-monitor-screen.-writing-programming-code-on-laptop.-programming-code-on-computer-screen.-m.jpg');
 }
+
 
 .cardHeader {
   width: 100%;
@@ -44,9 +48,10 @@
   align-items: center;
   height: 100%;
   width: 100%;
-  font-size: 2vw;
+  font-size: 2.5vw;
   background: #424077;
   color: white;
+  font-family: 'Roboto Slab', serif;
 }
 
 .questionSide,
@@ -93,6 +98,8 @@
   justify-content: center;
   width: 100%;
   height: 100%;
+  font-family: 'Roboto Slab', serif;
+  font-size: 2vw;
 }
 
 .cardBody.flipped {
