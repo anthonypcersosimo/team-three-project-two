@@ -19,25 +19,41 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <img src="./assets/img/codex.png" alt="Group Logo" id="logo-img">
         <a class="navbar-brand" href="/">Home</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-                <span class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Developers
-                </span>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="https://github.com/anthonypcersosimo">Anthony</a>
-                <a class="dropdown-item" href="https://github.com/Jimbomoso">James</a>
-                <a class="dropdown-item" href="https://github.com/kylewhittemore">Kyle</a>
-                <a class="dropdown-item" href="https://github.com/dgurung01">Dev</a>
-                </div>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="/display">Back to Decks</a></li>
-            <li class="nav-item"><a id="study-this" class="nav-link" href="">Study this Deck</a></li>
-            <!-- <li class="nav-item">
+                <li class="nav-item dropdown">
+                    <span class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Developers
+                    </span>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="https://github.com/anthonypcersosimo">Anthony</a>
+                        <a class="dropdown-item" href="https://github.com/Jimbomoso">James</a>
+                        <a class="dropdown-item" href="https://github.com/kylewhittemore">Kyle</a>
+                        <a class="dropdown-item" href="https://github.com/dgurung01">Dev</a>
+                    </div>
+                </li>
+                <li id="filter-dd" class="nav-item dropdown">
+                    <span class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Edit or Build a Deck
+                    </span>
+                    <div class="dropdown-menu" id="category-dd" aria-labelledby="navbarDropdownMenuLink">
+
+                        <!-- <a class="dropdown-item" href="https://github.com/anthonypcersosimo">Anthony</a>
+                        <a class="dropdown-item" href="https://github.com/Jimbomoso">James</a>
+                        <a class="dropdown-item" href="https://github.com/kylewhittemore">Kyle</a>
+                        <a class="dropdown-item" href="https://github.com/dgurung01">Dev</a> -->
+                    </div>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="/display">Back to Decks</a></li>
+                <li class="nav-item"><a id="study-this" class="nav-link" href="">Study this Deck</a></li>
+                <!-- <li class="nav-item"><a id="new-edit" class="nav-link" href="">Study this Deck</a></li> -->
+                <!-- <li class="nav-item">
                 <a class="nav-link" href="#">Features</a>
             </li>
             <li class="nav-item">
@@ -88,6 +104,7 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                     <button id="complete" class="btn btn-primary">Submit & Finish</button>
+                    <!-- <button id="build-new-deck" class="btn btn-primary">Submit & Finish</button> -->
                 </form>
             </div>
         </div>

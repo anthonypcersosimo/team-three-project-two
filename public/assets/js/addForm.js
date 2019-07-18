@@ -8,6 +8,15 @@ $(document).ready(function () {
     $("#deck-form").submit(event => handleDeckSubmit(event));
     $("#complete").click(event => handleFinish(event));
 
+    const getCategories = () => {
+        $.get('/api/decks', decks => {
+          const distinctCategories = [...new Set(decks.map(deck => deck.category))]
+          console.log(distinctCategories);
+          renderCategoryDD(distinctCategories)
+        })
+      }
+      getCategories();
+
     var url = window.location.search;
 
     const getCards = deckId => $.get("api/flashcards/deck/" + deckId, response => {
@@ -16,6 +25,24 @@ $(document).ready(function () {
         renderTable(deck)
         $("#card-table").removeClass("hidden")
     });
+
+    const renderCategoryDD = distinctCategories => {
+        $("#category-dd").empty();
+        // const distinctCategories = [...new Set(decks.map(deck => deck.category))]
+        // console.log(distinctCategories);
+        let noFilterLink = `<a class="dropdown-item" id="no-filter-link" href="">None</a>`;
+        $("#category-dd").append(noFilterLink)
+        distinctCategories.forEach(category => {
+          let newDDLink = $("<a>")
+          newDDLink.addClass("dropdown-item")
+          newDDLink.addClass("category-link")
+          newDDLink.text(category)
+          // let newDDLink = $(`<a class="dropdown-item" href="">${category}</a>;`)
+          newDDLink.data("category", category);
+          $("#category-dd").append(newDDLink)
+        })
+      }
+    
 
     if (url.indexOf("?deck_id=") !== -1) {
         deckId = url.split("=")[1];
@@ -54,6 +81,7 @@ $(document).ready(function () {
     const submitDeck = deckName => $.post("/api/decks", deckName, response => {
         deckId = response
         $("#study-this").attr("href", "/card?deck_id=" + deckId)
+        getCategories();
     });
 
     const submitCard = flashcard => $.post("/api/flashcards/", flashcard, response => lastCardId = response);
