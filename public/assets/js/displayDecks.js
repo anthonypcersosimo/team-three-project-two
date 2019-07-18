@@ -1,4 +1,5 @@
-$(document).ready(function() {
+$(document).ready(function () {
+  let catParam;
   // deckContainer holds all of our decks
   var deckContainer = $(".deck-container");
   var deckHeader = $("#deck-header");
@@ -12,8 +13,15 @@ $(document).ready(function() {
   deckHeader.append("<span>Create a new deck: </span>", newDeckBtn);
 
   // This function grabs decks from the database and updates the view
-  getDecks = () => {
-    $.get("/api/decks", function(data) {
+  getDecks = (catParam) => {
+
+    if (catParam) {
+      route = "/api/decks/" + catParam;
+    } else {
+      route = "/api/decks"
+    }
+
+    $.get(route, function (data) {
       console.log("Decks", data);
       decks = data;
       if (decks.length > 0) {
@@ -27,23 +35,22 @@ $(document).ready(function() {
       }
     });
   };
-  
+
   // render categories uses the new Set functionality from es6 to return only the distinct category values from the array of decks
   const renderCategoryDD = decks => {
+    $("#category-dd").empty();
     const distinctCategories = [...new Set(decks.map(deck => deck.category))]
     console.log(distinctCategories);
-    
+
     distinctCategories.forEach(category => {
       let newDDLink = $("<a>")
       newDDLink.addClass("dropdown-item")
+      newDDLink.addClass("category-link")
       newDDLink.text(category)
       // let newDDLink = $(`<a class="dropdown-item" href="">${category}</a>;`)
       newDDLink.data("category", category);
       $("#category-dd").append(newDDLink)
-
     })
-
-
   }
 
 
@@ -53,11 +60,11 @@ $(document).ready(function() {
       method: "DELETE",
       url: "api/decks/" + id
     })
-      .then(function() {
+      .then(function () {
         getDecks();
       });
   };
-  
+
   // Getting the initial list of decks
   getDecks();
   // InitializeRows handles appending all of our constructed post HTML inside
@@ -70,7 +77,7 @@ $(document).ready(function() {
     }
     deckContainer.append(postsToAdd);
   };
-  
+
   // This function constructs a post's HTML
   createNewRow = (post) => {
     console.log(post);
@@ -101,7 +108,7 @@ $(document).ready(function() {
       float: "right",
       "font-weight": "700",
       "margin-top":
-      "-15px"
+        "-15px"
     });
 
     var newPostCardBody = $("<div>");
@@ -112,7 +119,7 @@ $(document).ready(function() {
     newPostBody.text(post.body);
     var formattedDate = new Date(post.createdAt);
     formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
-    newPostCardBody.text("Last edited: " + post.updatedAt );
+    newPostCardBody.text("Last edited: " + post.updatedAt);
     newPostTitle.append(newPostDate);
     newPostCardHeading.append(deleteBtn);
     newPostCardHeading.append(editBtn);
@@ -125,15 +132,15 @@ $(document).ready(function() {
     newPostCard.data("post", post);
     return newPostCard;
   };
-  
+
   // This function figures out which post we want to delete and then calls
   // deletePost
-  $(window).on("click", function(e){
+  $(window).on("click", function (e) {
     if (e.target.className.includes('delete')) {
       handlePostDelete(e.target);
     }
     else if (e.target.className.includes('edit')) {
-      
+
       handlePostEdit(e.target)
     }
     else if (e.target.className.includes('new-deck')) {
@@ -144,24 +151,31 @@ $(document).ready(function() {
       window.location.href = '/card?deck_id=' + deckId;
     }
   });
-  
+
+  $(document).on("click", ".category-link", function () {
+      let category = $(this).data("category")
+      console.log(category)
+      getDecks(category)
+  });
+
+
   // $(document).on("click", ".card", function () {
   //   deckId = $(this).parent().data("id");
   //   console.log(deckId)
   // })
-    
+
   handlePostDelete = (e) => {
     var target = e.id;
     deletePost(target);
   }
-  
+
   const handlePostEdit = e => {
     let target = e.id
     console.log(target)
     window.location.href = "/form?deck_id=" + target;
   }
-  
-  
+
+
   // This function displays a message when there are no decks
   displayEmpty = () => {
     deckContainer.empty();
@@ -172,4 +186,3 @@ $(document).ready(function() {
   }
 
 });
-  
