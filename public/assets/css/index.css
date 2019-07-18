@@ -64,6 +64,15 @@ h2 { padding: 5px }
     margin: 0px 50px 0px 50px;
 }
 
+.welcome-text {
+    text-align: center;
+    font-size: 19pt;
+    font-family: 'Roboto Slab', serif;
+    font-variant: small-caps;
+    letter-spacing: 2pt;
+    font-weight: bolder;
+}
+
 .imgs-text {
     width: 150px;
     margin: 0px 20px 0px 20px;
