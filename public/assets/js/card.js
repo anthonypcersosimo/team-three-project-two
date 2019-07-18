@@ -18,12 +18,10 @@ $(document).ready(function () {
         getCards(deckId);
     };
 
-
-
     function displayCard(deck) {
-        let title = $('.deck-title')
-        let question = $('.card-question-text')
-        let answer = $('.card-answer-text')
+        let title = $('.deckTitle')
+        let question = $('.cardQuestionText')
+        let answer = $('.cardAnswerText')
         title.text(deck[count].deck_name)
         question.text(deck[count].term)
         answer.text(deck[count].def)
@@ -33,25 +31,43 @@ $(document).ready(function () {
         if (count === deck.length - 1) return;
         count++;
         displayCard(deck);
+        returnFront();
     })
 
     $('.last').on('click', function () {
         if (count === 0) return;
         count--;
         displayCard(deck);
+        returnFront();
     })
 
 });
 
 function roll() {
-    $('.roll-header-inner').toggleClass('rolled');
+    $('.cardHeader').toggleClass('rolled');
     setTimeout(function () { flip(); }, 0500);
 };
 
 // changes the class of the card face which animates the flip and toggles the side shown
 function flip() {
-    $('.flip-card-inner').toggleClass('flipped');
+    $('.cardBody').toggleClass('flipped');
 };
+
+function returnFront() {
+    if ($('.cardBody').hasClass('flipped') !== true) {
+        $('.cardBody').removeClass('flipped'); 
+        $('.cardHeader').removeClass('rolled'); 
+     } else {
+            roll();
+     }
+};
+
+
+
+
+
+
+
 
 
 
