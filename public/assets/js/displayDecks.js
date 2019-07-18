@@ -1,5 +1,5 @@
 $(document).ready(function () {
- 
+
   const getCategories = () => {
     $.get('/api/decks', decks => {
       const distinctCategories = [...new Set(decks.map(deck => deck.category))]
