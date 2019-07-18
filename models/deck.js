@@ -1,14 +1,27 @@
-module.exports = function(sequelize, DataTypes) {
-    var Deck = sequelize.define("Deck", {
-      deck_name: DataTypes.STRING
-    });
-  
-    Deck.associate = function(models) {
+module.exports = function (sequelize, DataTypes) {
+  var Deck = sequelize.define("Deck", {
+    deck_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1]
+      }
+    },
+    category: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1]
+      }
+    }
+  });
 
-      Deck.hasMany(models.Flashcard, {
-        onDelete: "cascade"
-      });
-    };
-  
-    return Deck;
+  Deck.associate = function (models) {
+
+    Deck.hasMany(models.Flashcard, {
+      onDelete: "cascade"
+    });
   };
+
+  return Deck;
+};

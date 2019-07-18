@@ -14,6 +14,7 @@ $(document).ready(function () {
         deck = response;
         console.log("deck response", deck)
         renderTable(deck)
+        $("#card-table").removeClass("hidden")
     });
 
     if (url.indexOf("?deck_id=") !== -1) {
@@ -39,7 +40,7 @@ $(document).ready(function () {
         if (!term || !def) return;
 
         let card = {
-            deck_name: deckName,
+            // deck_name: deckName,
             term: $("#question").val().trim(),
             def: $("#answer").val().trim(),
             DeckId: deckId
@@ -50,21 +51,27 @@ $(document).ready(function () {
             .then(() => window.location.href = "/display");
     }
 
-    const submitDeck = deckName => $.post("/api/decks", deckName, response => deckId = response);
+    const submitDeck = deckName => $.post("/api/decks", deckName, response => {
+        deckId = response
+        $("#study-this").attr("href", "/card?deck_id=" + deckId)
+    });
 
     const submitCard = flashcard => $.post("/api/flashcards/", flashcard, response => lastCardId = response);
 
     const handleDeckSubmit = event => {
         event.preventDefault();
         deckName = $("#deck-name").val().trim();
-        if (!deckName) return;
+        deckCategory = $('#deck-category').val().trim();
+
+        if (!deckName || !deckCategory) return;
         let deck = {
-            deck_name: deckName
+            deck_name: deckName,
+            category: deckCategory
         }
         submitDeck(deck)
             .then($("#deck-form").trigger("reset"))
             .then($("#deck-form").addClass("hidden"))
-            .then($("#card-form").removeClass("hidden"));
+            .then($("#card-form").removeClass("hidden"))
     };
 
     const handleCardSubmit = event => {
@@ -75,7 +82,6 @@ $(document).ready(function () {
         if (!term || !def) return;
 
         let card = {
-            deck_name: deckName,
             term: $("#question").val().trim(),
             def: $("#answer").val().trim(),
             DeckId: deckId
@@ -86,6 +92,16 @@ $(document).ready(function () {
             .then(() => getCards(deckId));
     };
 
+    // const handleRowChange = (card) => {
+    //     // event.preventDefault();
+    //     $.ajax({
+    //         method: "PUT",
+    //         url: "/api/flashcards",
+    //         data: card
+    //     }).then(response => console.log(response))
+    //         .then(() => getCards(deckId)
+    //             .then(renderTable(deck)))
+    // }
     const handleRowChange = (event, card) => {
         event.preventDefault();
         $.ajax({
@@ -99,11 +115,12 @@ $(document).ready(function () {
 
     const makeTableRow = (card, index) => {
         let id = card.id;
-        let question = card.term;
-        let answer = card.def;
+        let question = card.term.length > 30 ? card.term.slice(0, 30) + "..." : card.term;
+        let answer = card.def.length > 30 ? card.def.slice(0, 30) + "..." : card.def;
 
         let newRow = $("<tr>");
         newRow.data("id", id);
+        newRow.data("card", card)
 
         newRow.append(`<th scope="row"><a class="row-head" id="th-${id}">${index + 1}</a></td>`)
         newRow.append(`<td><a style='cursor:pointer;' class='edit-term'>${question}</a></td>`)
@@ -137,31 +154,46 @@ $(document).ready(function () {
 
     $(document).on("click", ".edit-term", function () {
         let id = $(this).parent("td").parent("tr").data("id")
-        let placeholder = $(this).text();
-        $(this).parent("td").html(`<form id="form-term"><input type="text" id="input-term" value="${placeholder}"></form>`);
-
-        $(`#form-term`).submit(event => {
+        let placeholder = $(this).parent("td").parent("tr").data("card").term
+        $(this).parent("td").html(`<form id="form-term"><div class="form-group"><input type="text" id="input-term" value="${placeholder}"></div></form>`);
+        $("#input-term").focus();
+        $(`#form-term`).focusout((event) => {
             let card = {
                 id: id,
                 term: $("#input-term").val().trim()
             };
-
+            
+            handleRowChange(event, card);
+        });
+        $(`#form-term`).submit((event) => {
+            let card = {
+                id: id,
+                term: $("#input-term").val().trim()
+            };
+            
             handleRowChange(event, card);
         });
     });
 
     $(document).on("click", ".edit-def", function () {
         let id = $(this).parent("td").parent("tr").data("id")
-        let placeholder = $(this).text();
-        $(this).parent("td").html(`<form id="form-def"><input type="text" id="input-def" value="${placeholder}"></form>`)
-        // $("#input-def").focus();
-
-        $(`#form-def`).submit(event => {
+        let placeholder = $(this).parent("td").parent("tr").data("card").def
+        $(this).parent("td").html(`<form id="form-def"><div class="form-group"><input type="text" id="input-def" value="${placeholder}"></div></form>`)
+        $("#input-def").focus();
+        $(`#form-def`).focusout((event) => {
             let card = {
                 id: id,
                 def: $("#input-def").val().trim()
             };
-
+            
+            handleRowChange(event, card);
+        });
+        $(`#form-def`).submit((event) => {
+            let card = {
+                id: id,
+                def: $("#input-def").val().trim()
+            };
+            
             handleRowChange(event, card);
         });
     });
