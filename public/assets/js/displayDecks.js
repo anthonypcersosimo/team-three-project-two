@@ -1,4 +1,5 @@
 $(document).ready(function () {
+ 
   const getCategories = () => {
     $.get('/api/decks', decks => {
       const distinctCategories = [...new Set(decks.map(deck => deck.category))]
@@ -52,7 +53,8 @@ $(document).ready(function () {
     $("#category-dd").empty();
     // const distinctCategories = [...new Set(decks.map(deck => deck.category))]
     // console.log(distinctCategories);
-
+    let noFilterLink = `<a class="dropdown-item" id="no-filter-link" href="">None</a>`;
+    $("#category-dd").append(noFilterLink)
     distinctCategories.forEach(category => {
       let newDDLink = $("<a>")
       newDDLink.addClass("dropdown-item")
@@ -166,6 +168,9 @@ $(document).ready(function () {
   $(document).on("click", ".category-link", function () {
     let category = $(this).data("category")
     console.log(category)
+    getDecks(category)
+  });
+  $(document).on("click", "#no-filter-link", function () {
     getDecks(category)
   });
 
