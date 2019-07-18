@@ -3,19 +3,20 @@ $(document).ready(function () {
     let deckId;
     let deckName;
     let deck = [];
+    let decks = [];
 
     $("#card-form").submit(event => handleCardSubmit(event));
     $("#deck-form").submit(event => handleDeckSubmit(event));
     $("#complete").click(event => handleFinish(event));
 
-    const getCategories = () => {
-        $.get('/api/decks', decks => {
-          const distinctCategories = [...new Set(decks.map(deck => deck.category))]
-          console.log(distinctCategories);
-          renderCategoryDD(distinctCategories)
-        })
-      }
-      getCategories();
+    // const getCategories = () => {
+    //     $.get('/api/decks', decks => {
+    //       const distinctCategories = [...new Set(decks.map(deck => deck.category))]
+    //       console.log(distinctCategories);
+    //       renderCategoryDD(distinctCategories)
+    //     })
+    //   }
+    //   getCategories();
 
     var url = window.location.search;
 
@@ -26,23 +27,61 @@ $(document).ready(function () {
         $("#card-table").removeClass("hidden")
     });
 
-    const renderCategoryDD = distinctCategories => {
-        $("#category-dd").empty();
+    const getDecks = (catParam) => {
+
+        if (catParam) {
+            route = "/api/decks/" + catParam;
+        } else {
+            route = "/api/decks"
+        }
+
+        $.get(route, function (data) {
+            console.log("Decks", data);
+            decks = data;
+            if (decks.length > 0) {
+                $("#decks-dd").removeClass("hidden");
+                renderDecksDD();
+            }
+        });
+    };
+
+    const renderDecksDD = () => {
+        $("#edit-deck-list").empty();
         // const distinctCategories = [...new Set(decks.map(deck => deck.category))]
         // console.log(distinctCategories);
-        let noFilterLink = `<a class="dropdown-item" id="no-filter-link" href="">None</a>`;
-        $("#category-dd").append(noFilterLink)
-        distinctCategories.forEach(category => {
-          let newDDLink = $("<a>")
-          newDDLink.addClass("dropdown-item")
-          newDDLink.addClass("category-link")
-          newDDLink.text(category)
-          // let newDDLink = $(`<a class="dropdown-item" href="">${category}</a>;`)
-          newDDLink.data("category", category);
-          $("#category-dd").append(newDDLink)
+        // let noDeckLink = `<a class="dropdown-item" id="no-deck-link" href="">None</a>`;
+        // $("#edit").append(noFilterLink)
+        decks.forEach(deck => {
+            let newDDLink = $("<a>")
+            newDDLink.addClass("dropdown-item")
+            newDDLink.addClass("deck-link")
+            newDDLink.text(deck.deck_name)
+            // let newDDLink = $(`<a class="dropdown-item" href="">${category}</a>;`)
+            // console.log(deck.id)
+            newDDLink.data("deckId", deck.id);
+            console.log(newDDLink.data("deckId"))
+            $("#edit-deck-list").append(newDDLink)
         })
-      }
-    
+    }
+    getDecks();
+
+    // const renderCategoryDD = distinctCategories => {
+    //     $("#category-dd").empty();
+    //     // const distinctCategories = [...new Set(decks.map(deck => deck.category))]
+    //     // console.log(distinctCategories);
+    //     let noFilterLink = `<a class="dropdown-item" id="no-filter-link" href="">None</a>`;
+    //     $("#category-dd").append(noFilterLink)
+    //     distinctCategories.forEach(category => {
+    //       let newDDLink = $("<a>")
+    //       newDDLink.addClass("dropdown-item")
+    //       newDDLink.addClass("category-link")
+    //       newDDLink.text(category)
+    //       // let newDDLink = $(`<a class="dropdown-item" href="">${category}</a>;`)
+    //       newDDLink.data("category", category);
+    //       $("#category-dd").append(newDDLink)
+    //     })
+    //   }
+
 
     if (url.indexOf("?deck_id=") !== -1) {
         deckId = url.split("=")[1];
@@ -81,7 +120,8 @@ $(document).ready(function () {
     const submitDeck = deckName => $.post("/api/decks", deckName, response => {
         deckId = response
         $("#study-this").attr("href", "/card?deck_id=" + deckId)
-        getCategories();
+        // getCategories();
+        getDecks();
     });
 
     const submitCard = flashcard => $.post("/api/flashcards/", flashcard, response => lastCardId = response);
@@ -180,6 +220,12 @@ $(document).ready(function () {
         window.location.href = '/card?deck_id=' + deckId;
     });
 
+    $(document).on("click", ".deck-link", function () {
+        let deckLinkId = $(this).data("deckId");
+        console.log(deckLinkId);
+        getCards(deckLinkId)
+    });
+
     $(document).on("click", ".edit-term", function () {
         let id = $(this).parent("td").parent("tr").data("id")
         let placeholder = $(this).parent("td").parent("tr").data("card").term
@@ -190,7 +236,7 @@ $(document).ready(function () {
                 id: id,
                 term: $("#input-term").val().trim()
             };
-            
+
             handleRowChange(event, card);
         });
         $(`#form-term`).submit((event) => {
@@ -198,7 +244,7 @@ $(document).ready(function () {
                 id: id,
                 term: $("#input-term").val().trim()
             };
-            
+
             handleRowChange(event, card);
         });
     });
@@ -213,7 +259,7 @@ $(document).ready(function () {
                 id: id,
                 def: $("#input-def").val().trim()
             };
-            
+
             handleRowChange(event, card);
         });
         $(`#form-def`).submit((event) => {
@@ -221,7 +267,7 @@ $(document).ready(function () {
                 id: id,
                 def: $("#input-def").val().trim()
             };
-            
+
             handleRowChange(event, card);
         });
     });
