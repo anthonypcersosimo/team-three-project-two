@@ -32,6 +32,7 @@ $(document).ready(function () {
         count++;
         displayCard(deck);
         returnFront();
+        nextCard();
     })
 
     $('.last').on('click', function () {
@@ -39,13 +40,14 @@ $(document).ready(function () {
         count--;
         displayCard(deck);
         returnFront();
+        previousCard();
     })
 
 });
 
 function roll() {
     $('.cardHeader').toggleClass('rolled');
-    setTimeout(function () { flip(); }, 0500);
+    setTimeout(function() { flip(); }, 0500);
 };
 
 // changes the class of the card face which animates the flip and toggles the side shown
@@ -61,6 +63,25 @@ function returnFront() {
             roll();
      }
 };
+
+function previousCard() {
+    $('.cardBody').addClass('swing-left-fwd');
+    setTimeout(function() { removeSwingLeft(); }, 0500);
+};
+function nextCard() {
+    $('.cardBody').addClass('swing-right-fwd');
+    setTimeout(function() { removeSwingRight(); }, 0500);
+};
+
+function removeSwingLeft() {
+    $('.cardBody').removeClass('swing-left-fwd');
+};
+
+function removeSwingRight() {
+    $('.cardBody').removeClass('swing-right-fwd');
+};
+
+
 
 
 
