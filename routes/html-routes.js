@@ -18,7 +18,7 @@ module.exports = function(app) {
   });
 
   app.get("/display", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/displayDecks.html"));
+    res.sendFile(path.join(__dirname, "../public/displayDecksTable.html"));
   });
   
   app.get("/card", function(req, res) {
