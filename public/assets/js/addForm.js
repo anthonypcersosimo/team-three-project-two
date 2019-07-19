@@ -30,7 +30,6 @@ $(document).ready(function () {
             decks = data;
             // $("#decks-dd").removeClass("hidden");
             renderDecksDD();
-
         });
     };
 
