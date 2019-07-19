@@ -7,7 +7,6 @@ $(document).ready(function () {
 
     $("#card-form").submit(event => handleCardSubmit(event));
     $("#deck-form").submit(event => handleDeckSubmit(event));
-    // $("#complete").click(event => handleFinish(event));
 
     var url = window.location.search;
 
@@ -29,15 +28,22 @@ $(document).ready(function () {
         $.get(route, function (data) {
             console.log("Decks", data);
             decks = data;
-            if (decks.length > 0) {
-                $("#decks-dd").removeClass("hidden");
-                renderDecksDD();
-            }
+            // $("#decks-dd").removeClass("hidden");
+            renderDecksDD();
+
         });
     };
 
     const renderDecksDD = () => {
         $("#edit-deck-list").empty();
+        let newNoneDD = $("<a>");
+        newNoneDD.addClass("dropdown-item")
+        newNoneDD.addClass("addDeck-link")
+        newNoneDD.addClass("disabled")
+        newNoneDD.addClass("text-muted")
+        newNoneDD.text("New Deck")
+        $("#edit-deck-list").append(newNoneDD)
+
         decks.forEach(deck => {
             let newDDLink = $("<a>")
             newDDLink.addClass("dropdown-item")
@@ -46,6 +52,7 @@ $(document).ready(function () {
             newDDLink.data("deckId", deck.id);
             console.log(newDDLink.data("deckId"))
             $("#edit-deck-list").append(newDDLink)
+            deckId = deck.id;
         })
     }
 
@@ -70,24 +77,6 @@ $(document).ready(function () {
             .then(() => getCards(deckId)
                 .then(renderTable(deck)))
     };
-
-    // const handleFinish = event => {
-    //     event.preventDefault();
-    //     let term = $("#question").val().trim();
-    //     let def = $("#answer").val().trim();
-
-    //     if (!term || !def) return;
-
-    //     let card = {
-    //         term: $("#question").val().trim(),
-    //         def: $("#answer").val().trim(),
-    //         DeckId: deckId
-    //     };
-
-    //     submitCard(card)
-    //         .then($("#card-form").trigger("reset"))
-    //         .then(() => window.location.href = "/display");
-    // }
 
     const submitDeck = deckName => $.post("/api/decks", deckName, response => {
         deckId = response
@@ -178,7 +167,7 @@ $(document).ready(function () {
     //     $("#deck-form").removeClass("hidden")
     //     $("#card-table").addClass("hidden")
     //     deckId = null;
-        
+
     // });
 
     $(document).on("click", "#back-decks", function () {
@@ -217,6 +206,9 @@ $(document).ready(function () {
 
     $(document).on("click", ".deck-link", function () {
         let deckLinkId = $(this).data("deckId");
+        deckId = deckLinkId;
+        $("#deck-form").addClass("hidden")
+        $("#card-form").removeClass("hidden")
         console.log(deckLinkId);
         getCards(deckLinkId)
     });
