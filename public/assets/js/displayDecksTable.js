@@ -7,10 +7,12 @@ $(document).ready(function () {
             renderCategoryDD(distinctCategories)
         })
     }
+
     getCategories();
 
     const getDecks = (catParam) => {
 
+        // Make this a ternary operatot
         if (catParam) {
             route = "/api/decks/" + catParam;
         } else {
@@ -18,18 +20,12 @@ $(document).ready(function () {
         }
 
         $.get(route, function (data) {
-            // console.log("Decks", data);
             decks = data;
-            if (decks.length > 0) {
-                // initializeRows(decks);
-                console.log(decks)
-                renderTable(decks)
-                $("#filter-dd").removeClass("hidden");
-            }
+            renderTable(decks)
+            $("#filter-dd").removeClass("hidden");
 
-            else {
-                // displayEmpty();
-            }
+            // add logic to not render an emoty table
+
         });
     };
 
@@ -52,7 +48,9 @@ $(document).ready(function () {
     }
 
     // This function does an API call to delete decks
-    deletePost = (id) => {
+    deleteDeck = (id) => {
+
+        console.log(id)
         $.ajax({
             method: "DELETE",
             url: "api/decks/" + id
@@ -66,12 +64,12 @@ $(document).ready(function () {
     getDecks();
 
     const makeTableRow = (deck, index) => {
-        console.log("deck from row builder", deck)
+        // console.log("deck from row builder", deck)
         let id = deck.id;
         let deckName = deck.deck_name;
         let category = deck.category;
         let cardsNum = deck.Flashcards.length;
-        console.log(id, deckName, category, cardsNum)
+        // console.log(id, deckName, category, cardsNum)
         let newRow = $("<tr>");
         newRow.data("id", id);
         newRow.data("deck", deck);
@@ -80,19 +78,48 @@ $(document).ready(function () {
         newRow.append(`<td>${deckName}</td>`);
         newRow.append(`<td>${category}</td>`);
         newRow.append(`<td>${cardsNum}</td>`);
-        newRow.append(`<td><a style='cursor:pointer;color:blue' class='study-card mx-2'>Study</a><a style='cursor:pointer;color:green' class='edit-card mx-2'>Edit</a><a style='cursor:pointer;color:red' class='delete-card mx-2'>Delete</a></td>`)
+        newRow.append(`<td><a style='cursor:pointer;color:blue' class='study-deck mx-2'>Study</a><a style='cursor:pointer;color:green' class='edit-deck mx-2'>Edit</a><a style='cursor:pointer;color:red' class='delete-deck mx-2'>Delete</a></td>`)
 
-        return newRow;    
+        return newRow;
     }
 
     const renderTable = decks => {
         $("#deck-rows").empty();
         decks.forEach((deck, index) => {
+            console.log("deck from render", deck)
             let newRow = makeTableRow(deck, index);
-            console.log(index + 1)
+            // console.log(index + 1)
             $("#deck-rows").append(newRow);
         });
     };
+
+    $(document).on("click", ".category-link", function () {
+        let category = $(this).data("category")
+        // console.log(category)
+        getDecks(category)
+    });
+
+
+    $(document).on("click", ".study-deck", function (event) {
+        event.preventDefault();
+        let id = $(this).parent("td").parent("tr").data("id");
+        window.location.href = '/card?deck_id=' + id;
+
+    });
+    $(document).on("click", ".edit-deck", function (event) {
+        event.preventDefault();
+        let id = $(this).parent("td").parent("tr").data("id");
+        window.location.href = '/form?deck_id=' + id;
+    });
+
+    $(document).on("click", ".delete-deck", function (event) {
+        event.preventDefault();
+        let id = $(this).parent("td").parent("tr").data("id");
+        console.log(id)
+        deleteDeck(id)
+
+    });
+
 
 
 })

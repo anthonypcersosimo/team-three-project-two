@@ -98,7 +98,8 @@ module.exports = function (app) {
         db.Deck.findAll({
             where: {
                 category: req.params.category
-            }
+            },
+            include: [db.Flashcard]
         }).then(dbDecks => res.json(dbDecks))
     })
 

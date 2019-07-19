@@ -47,6 +47,7 @@
                     </div>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="/display">Back to Decks</a></li>
+                <li class="nav-item"><a class="nav-link" id="new-deck" href="">New Deck</a></li>
                 <li class="nav-item"><a id="study-this" class="nav-link" href="">Study this Deck</a></li>
             </ul>
         </div>
@@ -54,7 +55,9 @@
     <div class="container">
         <div class="row">
             <div class="container col-md-7">
-                <form id="deck-form">
+
+                <!-- added hidden class to the form to prevent a blink onload -->
+                <form id="deck-form" class="hidden">
                     <div class="form-group mt-4">
                         <label for="deck-name">Deck Name:</label>
                         <input type="text" class="form-control" id="deck-name"
@@ -77,7 +80,7 @@
                         <input type="text" class="form-control" id="answer" placeholder="Enter your answer">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
-                    <button id="complete" class="btn btn-primary">Submit & Finish</button>
+                    <!-- <button id="complete" class="btn btn-primary">Submit & Finish</button> -->
                 </form>
             </div>
         </div>
