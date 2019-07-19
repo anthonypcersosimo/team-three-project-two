@@ -37,9 +37,9 @@ $(document).ready(function () {
         $("#edit-deck-list").empty();
         let newNoneDD = $("<a>");
         newNoneDD.addClass("dropdown-item")
-        newNoneDD.addClass("addDeck-link")
+        newNoneDD.addClass("add-deck-link")
         newNoneDD.addClass("disabled")
-        newNoneDD.addClass("text-muted")
+        // newNoneDD.addClass("text-muted")
         newNoneDD.text("New Deck")
         $("#edit-deck-list").append(newNoneDD)
 
@@ -210,6 +210,13 @@ $(document).ready(function () {
         $("#card-form").removeClass("hidden")
         console.log(deckLinkId);
         getCards(deckLinkId)
+    });
+
+    $(document).on("click", ".add-deck-link", function () {
+        
+        $("#deck-form").removeClass("hidden")
+        $("#card-form").addClass("hidden")
+        $("#card-table").addClass("hidden")
     });
 
     $(document).on("click", ".edit-term", function () {
