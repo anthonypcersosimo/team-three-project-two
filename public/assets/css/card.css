@@ -21,13 +21,14 @@
   height: 40%;
   width: 100%;
   margin: 0;
-  justify-content: center;
   align-items: center;
   font-size: 4vw;
   font-family: 'Roboto Slab', serif;
   font-weight: bolder;
   color: white;
   background-image: url('https://wallsheaven.com/photos/B630695770/400/html-website-structure.-technology-background.-it-coding-on-monitor-screen.-writing-programming-code-on-laptop.-programming-code-on-computer-screen.-m.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 
