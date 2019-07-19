@@ -100,12 +100,32 @@ $(document).ready(function () {
             .then($("#card-form").removeClass("hidden"))
     };
 
+    // Get the modal
+    var modal = document.getElementById("otherModal");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.style.display = "none";
+    };
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    };
+
     const handleCardSubmit = event => {
         event.preventDefault();
         let term = $("#question").val().trim();
         let def = $("#answer").val().trim();
-
-        if (!term || !def) return;
+        modal.style.display = "none";
+        if (!term || !def) {
+            modal.style.display = "block";
+        }; 
 
         let card = {
             term: $("#question").val().trim(),
