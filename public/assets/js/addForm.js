@@ -7,7 +7,6 @@ $(document).ready(function () {
 
     $("#card-form").submit(event => handleCardSubmit(event));
     $("#deck-form").submit(event => handleDeckSubmit(event));
-    $("#complete").click(event => handleFinish(event));
 
     var url = window.location.search;
 
@@ -29,15 +28,22 @@ $(document).ready(function () {
         $.get(route, function (data) {
             console.log("Decks", data);
             decks = data;
-            if (decks.length > 0) {
-                $("#decks-dd").removeClass("hidden");
-                renderDecksDD();
-            }
+            // $("#decks-dd").removeClass("hidden");
+            renderDecksDD();
+
         });
     };
 
     const renderDecksDD = () => {
         $("#edit-deck-list").empty();
+        let newNoneDD = $("<a>");
+        newNoneDD.addClass("dropdown-item")
+        newNoneDD.addClass("addDeck-link")
+        newNoneDD.addClass("disabled")
+        newNoneDD.addClass("text-muted")
+        newNoneDD.text("New Deck")
+        $("#edit-deck-list").append(newNoneDD)
+
         decks.forEach(deck => {
             let newDDLink = $("<a>")
             newDDLink.addClass("dropdown-item")
@@ -46,6 +52,7 @@ $(document).ready(function () {
             newDDLink.data("deckId", deck.id);
             console.log(newDDLink.data("deckId"))
             $("#edit-deck-list").append(newDDLink)
+            deckId = deck.id;
         })
     }
 
@@ -54,8 +61,13 @@ $(document).ready(function () {
     if (url.indexOf("?deck_id=") !== -1) {
         deckId = url.split("=")[1];
         console.log(deckId)
-        $("#deck-form").addClass("hidden");
+        $("#card-form").removeClass("hidden")
         getCards(deckId);
+    } else {
+        // i had to add hidden to the deck form, I was getting an annoying flicker on page load because it was getting set to hidden after load.  I set it hiden by default to prevent it
+
+        // if the user comes to create a new deck show the deck form
+        $("#deck-form").removeClass("hidden");
     }
     const deleteCard = cardId => {
         $.ajax({
@@ -66,27 +78,8 @@ $(document).ready(function () {
                 .then(renderTable(deck)))
     };
 
-    const handleFinish = event => {
-        event.preventDefault();
-        let term = $("#question").val().trim();
-        let def = $("#answer").val().trim();
-
-        if (!term || !def) return;
-
-        let card = {
-            term: $("#question").val().trim(),
-            def: $("#answer").val().trim(),
-            DeckId: deckId
-        };
-
-        submitCard(card)
-            .then($("#card-form").trigger("reset"))
-            .then(() => window.location.href = "/display");
-    }
-
     const submitDeck = deckName => $.post("/api/decks", deckName, response => {
         deckId = response
-        // $("#study-this").attr("href", "/card?deck_id=" + deckId)
         getDecks();
     });
 
@@ -128,6 +121,7 @@ $(document).ready(function () {
 
     const handleRowChange = (event, card) => {
         event.preventDefault();
+        if (!card.term || !card.def) return;
         $.ajax({
             method: "PUT",
             url: "/api/flashcards",
@@ -167,6 +161,14 @@ $(document).ready(function () {
         let id = $(this).parent("td").parent("tr").data("id")
         deleteCard(id)
     });
+    // $(document).on("click", "#new-deck", function (event) {
+    //     event.preventDefault();
+    //     $("#card-form").addClass("hidden")
+    //     $("#deck-form").removeClass("hidden")
+    //     $("#card-table").addClass("hidden")
+    //     deckId = null;
+
+    // });
 
     $(document).on("click", "#back-decks", function () {
         window.location.href = '/display'
@@ -174,19 +176,19 @@ $(document).ready(function () {
 
     // Get the modal
     var modal = document.getElementById("myModal");
-    
+
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
 
     // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
+    span.onclick = function () {
         modal.style.display = "none";
     };
 
     // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
         }
     };
 
@@ -204,6 +206,9 @@ $(document).ready(function () {
 
     $(document).on("click", ".deck-link", function () {
         let deckLinkId = $(this).data("deckId");
+        deckId = deckLinkId;
+        $("#deck-form").addClass("hidden")
+        $("#card-form").removeClass("hidden")
         console.log(deckLinkId);
         getCards(deckLinkId)
     });
@@ -211,20 +216,37 @@ $(document).ready(function () {
     $(document).on("click", ".edit-term", function () {
         let id = $(this).parent("td").parent("tr").data("id")
         let placeholder = $(this).parent("td").parent("tr").data("card").term
+        let def = $(this).parent("td").parent("tr").data("card").def;
+        let term = $(this).parent("td").parent("tr").data("card").term
         $(this).parent("td").html(`<form id="form-term"><div class="form-group"><input type="text" id="input-term" value="${placeholder}"></div></form>`);
         $("#input-term").focus();
         $(`#form-term`).focusout((event) => {
+            event.preventDefault();
+            let newTerm = $("#input-term").val().trim();
+            if (!newTerm) {
+                $("#input-term").val(term);
+                $("#input-term").focus();
+                newTerm = term;
+            }
             let card = {
                 id: id,
-                term: $("#input-term").val().trim()
+                term: newTerm,
+                def: def
             };
-
             handleRowChange(event, card);
         });
         $(`#form-term`).submit((event) => {
+            event.preventDefault();
+            let newTerm = $("#input-term").val().trim();
+            if (!newTerm) {
+                $("#input-term").val(term);
+                $("#input-term").focus();
+                newTerm = term;
+            }
             let card = {
                 id: id,
-                term: $("#input-term").val().trim()
+                term: newTerm,
+                def: def
             };
 
             handleRowChange(event, card);
@@ -233,20 +255,38 @@ $(document).ready(function () {
 
     $(document).on("click", ".edit-def", function () {
         let id = $(this).parent("td").parent("tr").data("id")
+        let term = $(this).parent("td").parent("tr").data("card").term
+        let def = $(this).parent("td").parent("tr").data("card").def;
         let placeholder = $(this).parent("td").parent("tr").data("card").def
         $(this).parent("td").html(`<form id="form-def"><div class="form-group"><input type="text" id="input-def" value="${placeholder}"></div></form>`)
         $("#input-def").focus();
         $(`#form-def`).focusout((event) => {
+            event.preventDefault();
+            let newDef = $("#input-def").val().trim();
+            if (!newDef) {
+                $("#input-def").val(def);
+                $("#input-def").focus();
+                newDef = def;
+            }
             let card = {
                 id: id,
-                def: $("#input-def").val().trim()
+                term: term,
+                def: newDef
             };
 
             handleRowChange(event, card);
         });
         $(`#form-def`).submit((event) => {
+            event.preventDefault();
+            let newDef = $("#input-def").val().trim();
+            if (!newDef) {
+                $("#input-def").val(def);
+                $("#input-def").focus();
+                newDef = def;
+            }
             let card = {
                 id: id,
+                term: term,
                 def: $("#input-def").val().trim()
             };
 
