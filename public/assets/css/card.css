@@ -21,7 +21,9 @@
   height: 40%;
   width: 100%;
   margin: 0;
-  justify-content: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: grayscale(1);
   align-items: center;
   font-size: 4vw;
   font-family: 'Roboto Slab', serif;

@@ -1,7 +1,10 @@
 {
     "development": {
       "username": "root",
+<<<<<<< HEAD
       "password": "Str@ton523",
+=======
+>>>>>>> master
       "database": "flashcards_db",
       "host": "127.0.0.1",
       "port": 3306,
