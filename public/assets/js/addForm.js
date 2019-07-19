@@ -172,14 +172,14 @@ $(document).ready(function () {
         let id = $(this).parent("td").parent("tr").data("id")
         deleteCard(id)
     });
-    $(document).on("click", "#new-deck", function (event) {
-        event.preventDefault();
-        $("#card-form").addClass("hidden")
-        $("#deck-form").removeClass("hidden")
-        $("#card-table").addClass("hidden")
-        deckId = null;
+    // $(document).on("click", "#new-deck", function (event) {
+    //     event.preventDefault();
+    //     $("#card-form").addClass("hidden")
+    //     $("#deck-form").removeClass("hidden")
+    //     $("#card-table").addClass("hidden")
+    //     deckId = null;
         
-    });
+    // });
 
     $(document).on("click", "#back-decks", function () {
         window.location.href = '/display'
