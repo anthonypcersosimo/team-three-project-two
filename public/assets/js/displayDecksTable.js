@@ -21,10 +21,15 @@ $(document).ready(function () {
 
         $.get(route, function (data) {
             decks = data;
-            renderTable(decks)
-            $("#filter-dd").removeClass("hidden");
-
-            // add logic to not render an emoty table
+            // logic to not render an empty table
+            console.log(decks.length);
+            if (decks.length === 0) {
+                renderEmpty();
+            }
+            else {
+                renderTable(decks)
+                $("#filter-dd").removeClass("hidden");
+            };
 
         });
     };
@@ -91,6 +96,16 @@ $(document).ready(function () {
             // console.log(index + 1)
             $("#deck-rows").append(newRow);
         });
+    };
+
+    const renderEmpty = () => {
+        console.log("I'm empty!")
+        const deckContainer = $("#deck-table");
+        deckContainer.empty();
+        var messageH2 = $("<h2>");
+        messageH2.css({ "text-align": "center", "margin-top": "50px", "font-size": "30px" });
+        messageH2.html("Uh oh! You have not created a deck yet! Click the 'Add a Deck' nav button above to create a new deck.");
+        deckContainer.append(messageH2);
     };
 
     $(document).on("click", ".category-link", function () {
