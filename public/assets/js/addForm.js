@@ -239,6 +239,16 @@ $(document).ready(function () {
         $("#card-form").addClass("hidden")
         $("#card-table").addClass("hidden")
     });
+    
+    $(document).on("click", "#export", function () {
+        
+        $.get("/api/flashcards/deck/pdf/" + deckId, function (data) {
+            console.log(data)
+        }).then(function () {
+            window.location.href = ('/pdf');
+        })
+
+    });
 
     $(document).on("click", ".edit-term", function () {
         let id = $(this).parent("td").parent("tr").data("id")

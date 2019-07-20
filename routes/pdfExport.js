@@ -15,9 +15,9 @@ module.exports = function (app) {
             },
             include: [db.Deck]
         })
-            .then(function (dbDeck) {
+            .then(function (dbFlashcard) {
 
-                dbDeck.forEach(card => {
+                dbFlashcard.forEach(card => {
                     doc.text(card.term, {
                         // lineBreak: false
                     })
