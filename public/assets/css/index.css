@@ -114,7 +114,7 @@ h2 { padding: 5px }
   }
   
   /* The Close Button */
-  .close {
+  .close, .close2 {
     color: rgb(240, 54, 54);
     float: right;
     font-size: 38px;
