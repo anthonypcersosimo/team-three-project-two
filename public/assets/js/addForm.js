@@ -28,7 +28,7 @@ $(document).ready(function () {
         $.get(route, function (data) {
             console.log("Decks", data);
             decks = data;
-            // $("#decks-dd").removeClass("hidden");
+
             renderDecksDD();
         });
     };
@@ -39,7 +39,6 @@ $(document).ready(function () {
         newNoneDD.addClass("dropdown-item")
         newNoneDD.addClass("add-deck-link")
         newNoneDD.addClass("disabled")
-        // newNoneDD.addClass("text-muted")
         newNoneDD.text("New Deck")
         $("#edit-deck-list").append(newNoneDD)
 
@@ -63,9 +62,7 @@ $(document).ready(function () {
         $("#card-form").removeClass("hidden")
         getCards(deckId);
     } else {
-        // i had to add hidden to the deck form, I was getting an annoying flicker on page load because it was getting set to hidden after load.  I set it hiden by default to prevent it
 
-        // if the user comes to create a new deck show the deck form
         $("#deck-form").removeClass("hidden");
     }
     const deleteCard = cardId => {
@@ -181,14 +178,6 @@ $(document).ready(function () {
         let id = $(this).parent("td").parent("tr").data("id")
         deleteCard(id)
     });
-    // $(document).on("click", "#new-deck", function (event) {
-    //     event.preventDefault();
-    //     $("#card-form").addClass("hidden")
-    //     $("#deck-form").removeClass("hidden")
-    //     $("#card-table").addClass("hidden")
-    //     deckId = null;
-
-    // });
 
     $(document).on("click", "#back-decks", function () {
         window.location.href = '/display'
@@ -247,7 +236,6 @@ $(document).ready(function () {
             console.log("foo bar", data)
         }).then(function () {
             window.open('/pdf');
-            // window.location.href = ('/pdf');
         })
 
     });
