@@ -101,20 +101,20 @@ $(document).ready(function () {
     };
 
     // Get the modal
-    var modal = document.getElementById("otherModal");
+    var modal2 = document.getElementById("otherModal");
 
     // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
+    var span2 = document.getElementsByClassName("close2")[0];
 
     // When the user clicks on <span> (x), close the modal
-    span.onclick = function () {
-        modal.style.display = "none";
+    span2.onclick = function () {
+        modal2.style.display = "none";
     };
 
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
+        if (event.target == modal2) {
+            modal2.style.display = "none";
         }
     };
 
@@ -122,9 +122,9 @@ $(document).ready(function () {
         event.preventDefault();
         let term = $("#question").val().trim();
         let def = $("#answer").val().trim();
-        modal.style.display = "none";
+        modal2.style.display = "none";
         if (!term || !def) {
-            modal.style.display = "block";
+            modal2.style.display = "block";
         }; 
 
         let card = {
