@@ -30,24 +30,24 @@ $(document).ready(function () {
     $('.next').on('click', function () {
         if (count === deck.length - 1) return;
         count++;
-        displayCard(deck);
         returnFront();
         nextCard();
-    })
+        setTimeout(function() { displayCard(deck); }, 1000);
+    });
 
     $('.last').on('click', function () {
         if (count === 0) return;
         count--;
-        displayCard(deck);
         returnFront();
         previousCard();
+        setTimeout(function() { displayCard(deck); }, 1000);
     })
 
 });
 
 function roll() {
     $('.cardHeader').toggleClass('rolled');
-    setTimeout(function() { flip(); }, 0500);
+    setTimeout(function() { flip(); }, 500);
 };
 
 // changes the class of the card face which animates the flip and toggles the side shown
@@ -64,19 +64,20 @@ function returnFront() {
      }
 };
 
-function previousCard() {
-    $('.cardBody').addClass('swing-left-fwd');
-    setTimeout(function() { removeSwingLeft(); }, 0500);
+const previousCard = () => {
+    $('.cardBody').addClass('slide-out-left');
+    setTimeout(function() { removeSlideLeft(); }, 1000);
 };
-function nextCard() {
-    $('.cardBody').addClass('swing-right-fwd');
-    setTimeout(function() { removeSwingRight(); }, 0500);
-};
-
-function removeSwingLeft() {
-    $('.cardBody').removeClass('swing-left-fwd');
+const  nextCard = () => {
+    $('.cardBody').addClass('slide-out-right');
+    setTimeout(function() { removeSlideRight(); }, 1000);
 };
 
-function removeSwingRight() {
-    $('.cardBody').removeClass('swing-right-fwd');
+const removeSlideLeft = () => {
+    $('.cardBody').removeClass('slide-out-left');
 };
+
+const removeSlideRight = () => {
+    $('.cardBody').removeClass('slide-out-right');
+};
+
