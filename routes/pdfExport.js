@@ -4,11 +4,14 @@ var db = require("../models");
 
 module.exports = function (app) {
 
-    const doc = new PDFdoc;
+    // const doc = new PDFdoc;
 
-    doc.pipe(fs.createWriteStream('./output.pdf'));
+    // doc.pipe(fs.createWriteStream('./output.pdf'));
 
     app.get("/api/flashcards/deck/pdf/:id", function (req, res) {
+
+        let doc = new PDFdoc;
+
         db.Flashcard.findAll({
             where: {
                 deckId: req.params.id
@@ -16,6 +19,10 @@ module.exports = function (app) {
             include: [db.Deck]
         })
             .then(function (dbFlashcard) {
+                // const doc = new PDFdoc;
+                
+                // doc.pipe(fs.createWriteStream(`./${dbFlashcard[0].deck.deck_name}.pdf`));
+                doc.pipe(fs.createWriteStream(`./output.pdf`));
 
                 dbFlashcard.forEach(card => {
                     doc.text(card.term, {
@@ -29,6 +36,7 @@ module.exports = function (app) {
                 })
 
                 res.json(dbFlashcard);
+
             }).then(function () {
 
                 doc.end();

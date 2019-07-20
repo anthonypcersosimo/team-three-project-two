@@ -240,10 +240,11 @@ $(document).ready(function () {
         $("#card-table").addClass("hidden")
     });
     
-    $(document).on("click", "#export", function () {
+    $(document).on("click", "#export", function (event) {
+        event.preventDefault();
         
         $.get("/api/flashcards/deck/pdf/" + deckId, function (data) {
-            console.log(data)
+            console.log("foo bar", data)
         }).then(function () {
             window.location.href = ('/pdf');
         })

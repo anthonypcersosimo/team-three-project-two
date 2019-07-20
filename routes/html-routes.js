@@ -21,6 +21,7 @@ module.exports = function(app) {
   app.get("/pdf", function (req, res) {
     
     res.sendFile(path.join(__dirname, "../output.pdf"))
+    
   })
 
   app.get("/display", function(req, res) {
