@@ -125,6 +125,7 @@ $(document).ready(function () {
         modal2.style.display = "none";
         if (!term || !def) {
             modal2.style.display = "block";
+            return
         }; 
 
         let card = {
