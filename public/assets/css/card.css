@@ -18,26 +18,28 @@
 
 .deckTitle {
   display: flex;
-  height: 40%;
+  height: 20%;
   width: 100%;
   margin: 0;
   align-items: center;
   justify-content: center;
-  font-size: 4vw;
-  font-family: 'Roboto Slab', serif;
-  font-weight: bolder;
+  font-size: 3vw;
   color: white;
-  background-image: url('https://wallsheaven.com/photos/B630695770/400/html-website-structure.-technology-background.-it-coding-on-monitor-screen.-writing-programming-code-on-laptop.-programming-code-on-computer-screen.-m.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
+  font-family: "Roboto Slab", serif;
+  font-weight: bolder;
+  background-image: url("https://edsurge.imgix.net/uploads/post/image/11914/teaching-1552092162.jpg?auto=compress%2Cformat&w=640&h=259&fit=crop");
+  background-size: contain;
+  border-radius: 8px 8px 0px 0px;
+  font-family: 'Geostar', cursive;
 }
-
 
 .cardHeader {
   width: 100%;
   height: 40%;
   transition: transform 0.5s;
   transform-style: preserve-3d;
+  margin-bottom: 1%;
+  
 }
 
 .cardHeader.rolled {
@@ -50,10 +52,17 @@
   align-items: center;
   height: 100%;
   width: 100%;
-  font-size: 2.5vw;
-  background: #424077;
+  font-size: 1.5vw;
   color: white;
-  font-family: 'Roboto Slab', serif;
+  font-family: "Roboto Slab", serif;
+  background-image: url("https://edsurge.imgix.net/uploads/post/image/11914/teaching-1552092162.jpg?auto=compress%2Cformat&w=640&h=259&fit=crop");
+  background-size: contain;
+  border-radius: 0px 0px 8px 8px;
+  font-family: 'Allerta Stencil', sans-serif;
+
+
+
+
 }
 
 .questionSide,
@@ -74,8 +83,9 @@
   justify-content: center;
   align-items: center;
   perspective: 1000px;
-  height: 50%;
+  height: 30%;
   width: 40%;
+  margin-top: -150px;
 }
 
 .cardBody {
@@ -89,19 +99,26 @@
 .cardBodyBack {
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 120%;
   backface-visibility: hidden;
   background: #eee;
 }
 
-.cardQuestionText, .cardAnswerText {
+.cardQuestionText,
+.cardAnswerText {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
-  font-family: 'Roboto Slab', serif;
+  font-family: "Roboto Slab", serif;
   font-size: 2vw;
+  background-image: url('https://i.pinimg.com/736x/b1/71/2e/b1712ef25df80e3db469dfc09e144de7.jpg');
+  background-size: cover;
+  border-radius: 8px;
+  -webkit-box-shadow: 20px 20px 5px -6px rgba(15, 13, 15, 0.35);
+  -moz-box-shadow: 20px 20px 5px -6px rgba(15, 13, 15, 0.35);
+  box-shadow: 20px 20px 5px -6px rgba(15, 13, 15, 0.35);
 }
 
 .cardBody.flipped {
@@ -126,86 +143,88 @@
 .controls button {
   display: flex;
   flex-grow: 0;
-  background: #1D5405;
+  background: #1d5405;
   color: white;
+  margin-top: 100px;
   height: 100%;
   width: 30%;
   justify-content: space-evenly;
   align-items: center;
   padding: 0;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .swing-right-fwd {
-	-webkit-animation: swing-right-fwd 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	        animation: swing-right-fwd 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  -webkit-animation: swing-right-fwd 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
+  animation: swing-right-fwd 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
- @-webkit-keyframes swing-right-fwd {
+@-webkit-keyframes swing-right-fwd {
   0% {
     -webkit-transform: rotateY(0);
-            transform: rotateY(0);
+    transform: rotateY(0);
     -webkit-transform-origin: right;
-            transform-origin: right;
+    transform-origin: right;
   }
   100% {
     -webkit-transform: rotateY(180deg);
-            transform: rotateY(180deg);
+    transform: rotateY(180deg);
     -webkit-transform-origin: right;
-            transform-origin: right;
+    transform-origin: right;
   }
 }
 
 @keyframes swing-right-fwd {
   0% {
     -webkit-transform: rotateY(0);
-            transform: rotateY(0);
+    transform: rotateY(0);
     -webkit-transform-origin: right;
-            transform-origin: right;
+    transform-origin: right;
   }
   100% {
     -webkit-transform: rotateY(180deg);
-            transform: rotateY(180deg);
+    transform: rotateY(180deg);
     -webkit-transform-origin: right;
-            transform-origin: right;
+    transform-origin: right;
   }
 }
 
 .swing-left-fwd {
-	-webkit-animation: swing-left-fwd 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	        animation: swing-left-fwd 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  -webkit-animation: swing-left-fwd 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
+  animation: swing-left-fwd 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
- @-webkit-keyframes swing-left-fwd {
+@-webkit-keyframes swing-left-fwd {
   0% {
     -webkit-transform: rotateY(0);
-            transform: rotateY(0);
+    transform: rotateY(0);
     -webkit-transform-origin: left bottom;
-            transform-origin: left bottom;
+    transform-origin: left bottom;
   }
   100% {
     -webkit-transform: rotateY(-180deg);
-            transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
     -webkit-transform-origin: left bottom;
-            transform-origin: left bottom;
+    transform-origin: left bottom;
   }
 }
 
 @keyframes swing-left-fwd {
   0% {
     -webkit-transform: rotateY(0);
-            transform: rotateY(0);
+    transform: rotateY(0);
     -webkit-transform-origin: left bottom;
-            transform-origin: left bottom;
+    transform-origin: left bottom;
   }
   100% {
     -webkit-transform: rotateY(-180deg);
-            transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
     -webkit-transform-origin: left bottom;
-            transform-origin: left bottom;
+    transform-origin: left bottom;
   }
 }
-
-
 
 /* logo blue: 8686A6 */
 /* logo green: 1D5405 */
