@@ -5,6 +5,7 @@
 // Dependencies
 // =============================================================
 var path = require("path");
+// const fs = require('fs')
 
 // Routes
 // =============================================================
@@ -16,6 +17,11 @@ module.exports = function(app) {
   app.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/index.html"));
   });
+
+  app.get("/pdf", function (req, res) {
+    
+    res.sendFile(path.join(__dirname, "../output.pdf"))
+  })
 
   app.get("/display", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/displayDecksTable.html"));
