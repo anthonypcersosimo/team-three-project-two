@@ -34,11 +34,8 @@ $(document).ready(function () {
         });
     };
 
-    // render categories uses the new Set functionality from es6 to return only the distinct category values from the array of decks
     const renderCategoryDD = distinctCategories => {
         $("#category-dd").empty();
-        // const distinctCategories = [...new Set(decks.map(deck => deck.category))]
-        // console.log(distinctCategories);
         let noFilterLink = `<a class="dropdown-item" id="no-filter-link" href="">None</a>`;
         $("#category-dd").append(noFilterLink)
         distinctCategories.forEach(category => {
@@ -46,14 +43,12 @@ $(document).ready(function () {
             newDDLink.addClass("dropdown-item")
             newDDLink.addClass("category-link")
             newDDLink.text(category)
-            // let newDDLink = $(`<a class="dropdown-item" href="">${category}</a>;`)
             newDDLink.data("category", category);
             $("#category-dd").append(newDDLink)
         })
     }
 
-    // This function does an API call to delete decks
-    deleteDeck = (id) => {
+    const deleteDeck = (id) => {
 
         console.log(id)
         $.ajax({
@@ -69,12 +64,10 @@ $(document).ready(function () {
     getDecks();
 
     const makeTableRow = (deck, index) => {
-        // console.log("deck from row builder", deck)
         let id = deck.id;
         let deckName = deck.deck_name;
         let category = deck.category;
         let cardsNum = deck.Flashcards.length;
-        // console.log(id, deckName, category, cardsNum)
         let newRow = $("<tr>");
         newRow.data("id", id);
         newRow.data("deck", deck);
@@ -93,7 +86,6 @@ $(document).ready(function () {
         decks.forEach((deck, index) => {
             console.log("deck from render", deck)
             let newRow = makeTableRow(deck, index);
-            // console.log(index + 1)
             $("#deck-rows").append(newRow);
         });
     };
@@ -110,7 +102,6 @@ $(document).ready(function () {
 
     $(document).on("click", ".category-link", function () {
         let category = $(this).data("category")
-        // console.log(category)
         getDecks(category)
     });
 

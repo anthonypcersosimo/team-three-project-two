@@ -80,22 +80,3 @@ function removeSwingLeft() {
 function removeSwingRight() {
     $('.cardBody').removeClass('swing-right-fwd');
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Questions I have:
-
-// #1) When a user selects a deck at the previous screen, what tells my files what was selected so they know what to load?
-
-// #2) How do I take the selected deck and split into individual pairings of questions/answers (single card) and what becomes the card identifer? (for going back and forth through the deck)
