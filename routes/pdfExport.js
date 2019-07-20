@@ -19,21 +19,30 @@ module.exports = function (app) {
             include: [db.Deck]
         })
             .then(function (dbFlashcard) {
-                // const doc = new PDFdoc;
-                
-                // doc.pipe(fs.createWriteStream(`./${dbFlashcard[0].deck.deck_name}.pdf`));
-                doc.pipe(fs.createWriteStream(`./output.pdf`));
+                if (dbFlashcard.length > 0) {
+                    doc.pipe(fs.createWriteStream(`./output.pdf`));
+                    doc.fontSize(20)
+                        
+                        .font("Courier-Bold")
+                        .text(`${dbFlashcard[0].Deck.category}: ${dbFlashcard[0].Deck.deck_name}`, {
+                            align: "center"
+                        })
+                        .moveDown(1.5)
+                    dbFlashcard.forEach(card => {
+                        doc.fontSize(14)
+                            
+                            .text("Q: " + card.term, {
 
-                dbFlashcard.forEach(card => {
-                    doc.text(card.term, {
-                        // lineBreak: false
+                            })
+                        doc.moveDown(.5);
+                        doc.text("A: " + card.def, {
+                            indent: 45
+                        })
+                        doc.moveDown(2);
                     })
-                    doc.moveDown(2);
-                    doc.text(card.def, {
-                        // lineBreak: false
-                    })
-                    doc.moveDown(2);
-                })
+
+                }
+
 
                 res.json(dbFlashcard);
 
