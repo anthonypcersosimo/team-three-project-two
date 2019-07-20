@@ -8,11 +8,11 @@ var db = require("../models");
 
 module.exports = function (app) {
 
-    // const doc = new PDFdoc;
+    const doc = new PDFdoc;
 
-    // doc.pipe(fs.createWriteStream('./output.pdf'));
+    doc.pipe(fs.createWriteStream('./output.pdf'));
 
-    // doc.text('Hello world!', 100, 100)
+    // doc.text('foo bar!', 100, 100)
     // doc.end();
 
 
@@ -24,12 +24,20 @@ module.exports = function (app) {
             .then(function (dbFlashcard) {
                 
                 dbFlashcard.forEach(card => {
-                    doc.text(card.term, 100, 100)
-                    doc.text(card.def, 100, 100)
+                    doc.text(card.term, {
+                        // lineBreak: false
+                    })
+                    doc.moveDown(2);
+                    doc.text(card.def,{
+                        // lineBreak: false
+                    })
+                    doc.moveDown(2);
                 })
                 
-                doc.end();
                 res.json(dbFlashcard);
+            }).then(function() {
+
+                doc.end();
             });
     });
 
