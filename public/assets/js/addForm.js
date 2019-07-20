@@ -246,7 +246,8 @@ $(document).ready(function () {
         $.get("/api/flashcards/deck/pdf/" + deckId, function (data) {
             console.log("foo bar", data)
         }).then(function () {
-            window.location.href = ('/pdf');
+            window.open('/pdf');
+            // window.location.href = ('/pdf');
         })
 
     });
