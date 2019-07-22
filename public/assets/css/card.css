@@ -18,27 +18,28 @@
 
 .deckTitle {
   display: flex;
-  height: 58%;
+  height: 20%;
   width: 100%;
   margin: 0;
   align-items: center;
   justify-content: center;
   font-size: 3vw;
-  color: #b78a19;
-  font-family: 'Roboto Slab', serif;
+  color: white;
+  font-family: "Roboto Slab", serif;
   font-weight: bolder;
-  background-image: url("../img/deckname.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-image: url("https://edsurge.imgix.net/uploads/post/image/11914/teaching-1552092162.jpg?auto=compress%2Cformat&w=640&h=259&fit=crop");
+  background-size: contain;
+  border-radius: 8px 8px 0px 0px;
+  font-family: 'Geostar', cursive;
 }
-
 
 .cardHeader {
   width: 100%;
   height: 40%;
   transition: transform 0.5s;
   transform-style: preserve-3d;
+  margin-bottom: 1%;
+  
 }
 
 .cardHeader.rolled {
@@ -51,11 +52,17 @@
   align-items: center;
   height: 100%;
   width: 100%;
-  font-size: 2.5vw;
-  background: #424077;
+  font-size: 1.5vw;
   color: white;
-  font-family: 'Roboto Slab', serif;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  font-family: "Roboto Slab", serif;
+  background-image: url("https://edsurge.imgix.net/uploads/post/image/11914/teaching-1552092162.jpg?auto=compress%2Cformat&w=640&h=259&fit=crop");
+  background-size: contain;
+  border-radius: 0px 0px 8px 8px;
+  font-family: 'Allerta Stencil', sans-serif;
+
+
+
+
 }
 
 .questionSide,
@@ -76,7 +83,7 @@
   justify-content: center;
   align-items: center;
   perspective: 1000px;
-  height: 50%;
+  height: 30%;
   width: 40%;
   margin-top: -150px;
 }
@@ -97,15 +104,21 @@
   background: #eee;
 }
 
-.cardQuestionText, .cardAnswerText {
+.cardQuestionText,
+.cardAnswerText {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
-  font-family: 'Roboto Slab', serif;
+  font-family: "Roboto Slab", serif;
   font-size: 2vw;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-image: url('https://i.pinimg.com/736x/b1/71/2e/b1712ef25df80e3db469dfc09e144de7.jpg');
+  background-size: cover;
+  border-radius: 8px;
+  -webkit-box-shadow: 20px 20px 5px -6px rgba(15, 13, 15, 0.35);
+  -moz-box-shadow: 20px 20px 5px -6px rgba(15, 13, 15, 0.35);
+  box-shadow: 20px 20px 5px -6px rgba(15, 13, 15, 0.35);
 }
 
 .cardBody.flipped {
@@ -130,7 +143,7 @@
 .controls button {
   display: flex;
   flex-grow: 0;
-  background: #1D5405;
+  background: #1d5405;
   color: white;
   margin-top: 100px;
   height: 100%;
