@@ -20,19 +20,19 @@ $(document).ready(function () {
 
     function displayCard(deck) {
         let title = $('.deckTitle')
-        let question = $('.cardQuestionText')
-        let answer = $('.cardAnswerText')
+        let question = $('.cardBodyFront')
+        let answer = $('.cardBodyBack')
         title.text(deck[count].Deck.deck_name)
-        question.text(deck[count].term)
-        answer.text(deck[count].def)
-    }
+        question.text(deck[count].term);
+        answer.text(deck[count].def); 
+    };
 
     $('.next').on('click', function () {
         if (count === deck.length - 1) return;
         count++;
         returnFront();
         nextCard();
-        setTimeout(function() { displayCard(deck); }, 1000);
+        setTimeout(function () { displayCard(deck); }, 1000);
     });
 
     $('.last').on('click', function () {
@@ -40,14 +40,19 @@ $(document).ready(function () {
         count--;
         returnFront();
         previousCard();
-        setTimeout(function() { displayCard(deck); }, 1000);
-    })
+        setTimeout(function () { displayCard(deck); }, 1000);
+    });
+
+    $('.flip').on('click', function () {
+        roll();
+    });
 
 });
 
 function roll() {
     $('.cardHeader').toggleClass('rolled');
-    setTimeout(function() { flip(); }, 500);
+    setTimeout(function () { flip(); }, 500);
+    setTimeout(function () { question.text(deck[count].term);}, 5000);
 };
 
 // changes the class of the card face which animates the flip and toggles the side shown
@@ -57,20 +62,20 @@ function flip() {
 
 function returnFront() {
     if ($('.cardBody').hasClass('flipped') !== true) {
-        $('.cardBody').removeClass('flipped'); 
-        $('.cardHeader').removeClass('rolled'); 
-     } else {
-            roll();
-     }
+        $('.cardBody').removeClass('flipped');
+        $('.cardHeader').removeClass('rolled');
+    } else {
+        roll();
+    }
 };
 
 const previousCard = () => {
     $('.cardBody').addClass('slide-out-left');
-    setTimeout(function() { removeSlideLeft(); }, 1000);
+    setTimeout(function () { removeSlideLeft(); }, 1000);
 };
-const  nextCard = () => {
+const nextCard = () => {
     $('.cardBody').addClass('slide-out-right');
-    setTimeout(function() { removeSlideRight(); }, 1000);
+    setTimeout(function () { removeSlideRight(); }, 1000);
 };
 
 const removeSlideLeft = () => {

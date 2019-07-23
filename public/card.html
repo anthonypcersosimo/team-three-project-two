@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js">
+<html lang="en" class="no-js">
 <!--<![endif]-->
 
 <head>
@@ -14,9 +14,11 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="./assets/css/card.css">
-    <!-- Google fonts -->
+    <link rel="stylesheet" media="screen and (min-width: 900px)" href="./assets/css/card.css">
+    <!-- mobile  -->
+    <link rel="stylesheet" media="screen and (max-width: 900px)" href=" ./assets/css/mobile.css"> <!-- Google fonts -->
     <link href="https://fonts.googleapis.com/css?family=Allerta+Stencil|Geostar&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
 
     <!-- JQUERY -->
     <script src="https://code.jquery.com/jquery.js"></script>
@@ -59,40 +61,49 @@
 
     <div class="box">
 
-        <div onClick="roll()" class="currentCard">
+        <h2 class="deckTitle"> </h2>
+        <!-- <div class="container">
 
-            <h5 class="deckTitle"> </h5>
+            <h2 class="deckTitle"> </h2>
+
+        </div> -->
+
+        <div class="content">
+
+            <div class="currentCard">
+
+                <div onClick="roll();" class="cardBody">
+                    <div class="cardBodyFront"> </div>
+                    <div class="cardBodyBack"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="content2">
+
             <div class="cardHeader">
-
                 <div class="questionSide">
-                    <div class="sideName">Question:</div>
+                    <h3 class="sideName">Question:</h3>
                 </div>
 
                 <div class="answerSide">
-                    <div class="sideName">Answer:</div>
+                    <h3 class="sideName">Answer:</h3>
                 </div>
-
             </div>
 
-            <div class="cardBody">
-
-                <div class="cardBodyFront">
-                    <p class="cardQuestionText"></p>
-                </div>
-
-                <div class="cardBodyBack">
-                    <p class="cardAnswerText"> </p>
-                </div>
-
+            <div class="controls">
+                <button type="button" class="last btn btn-success">LAST</button>
+                <button type="button" class="flip btn btn-success">FLIP</button>
+                <button type="button" class="next btn btn-success">NEXT</button>
             </div>
+
+
 
         </div>
 
-        <div class="controls">
-            <button type="button" class="last btn btn-success">Last</button>
-            <button onclick="roll()" type="button" class="flip btn btn-success">Flip</button>
-            <button type="button" class="next btn btn-success">Next</button>
-        </div>
+
 
 
     </div>
