@@ -1,0 +1,261 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    margin: 0;
+    background-image: url('https://cmkt-image-prd.global.ssl.fastly.net/0.1.0/ps/2188607/580/386/m1/fpnw/wm0/background2_cm-.jpg?1485447078&s=61635f2b90cc475721581c5a4fbeceb6');
+  }
+  
+  .box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    flex-direction: column;
+    margin: 0;
+    border-left: 1px white solid;
+    border-right:1px white solid;
+  }
+  
+  .content {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: white;
+  }
+  
+  .navbar {
+    width: 100%;
+    height: 82px;
+    border-bottom: 1px solid lawngreen;
+  }
+
+
+  .navbar-brand, .nav-link {
+      background: white;
+  }
+  
+  #logo-img {
+    height: 50px;
+    width: 200px;
+  }
+  
+  .deckTitle {
+    display: flex;
+    height: 50%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    color: lawngreen;
+    margin: 0;
+    font-weight: bolder;
+    background: #0D0857;
+    border-radius: 8px;
+    font-family: 'Geostar', cursive;
+    background-image: url('https://edsurge.imgix.net/uploads/post/image/11914/teaching-1552092162.jpg?auto=compress%2Cformat&w=640&h=259&fit=crop');
+  }
+  
+  .container {
+    height: 20%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .cardHeader {
+    width: 90%;
+    height: 90%;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+  }
+  
+  .cardHeader.rolled {
+    transform: rotateX(-180deg);
+  }
+  
+  .sideName {
+    display: flex;
+    justify-content: center;
+    height: 20%;
+    align-items: center;
+    width: 100%;
+    color: lawngreen;
+    font-family: 'Geostar', cursive;
+    border-radius: 8px;
+  }
+  
+  .questionSide,
+  .answerSide {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    width: 100%; 
+    height: 100%;  
+    backface-visibility: hidden;
+  }
+  
+  .answerSide {
+    transform: rotateX(-180deg);
+  }
+  
+  .currentCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+    height: 90%;
+    width: 90%;
+  }
+  
+  .cardBody {
+    display: flex;
+    width: 90%;
+    height: 80%;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    border: 10px solid white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 50px 0 rgba(0, 0, 0, 0.45);
+  }
+  
+  .cardBodyFront,
+  .cardBodyBack {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    justify-content: center;
+    line-height: 1.5em;
+    padding: 10%;
+    align-items: center;
+    color: white;
+    font-size: 2vh;
+    font-family: 'Poppins', sans-serif;
+    background-image: url('https://edsurge.imgix.net/uploads/post/image/11914/teaching-1552092162.jpg?auto=compress%2Cformat&w=640&h=259&fit=crop');
+  }
+  
+  .cardBody.flipped {
+    transform: rotateY(-180deg);
+  }
+  
+  .cardBodyBack {
+    transform: rotateY(180deg);
+  }
+  
+  .content2 {
+    display: flex;
+    width: 100%;
+    height: 30%;
+    margin-bottom: 60px;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+  }
+  .controls {
+    display: flex;
+    width: 100%;
+    height: 15%;
+    margin: 0;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0;
+    background: #0D0857;
+    border-radius: 8px 8px 0px 0px;
+    background-image: url('https://edsurge.imgix.net/uploads/post/image/11914/teaching-1552092162.jpg?auto=compress%2Cformat&w=640&h=259&fit=crop');
+    position: absolute;
+    bottom: 0;
+    
+  }
+  
+  .controls button {
+    justify-content: center;
+    display: flex;
+    background: lawngreen;
+    color: #0D0857;
+    font-size: 1.5vh;
+    font-weight: bold;
+    height: 50px; 
+    width: 150px;
+    padding: 0;
+    border: 3px solid white;
+  }
+  
+  button {
+    color: lawngreen;
+  }
+  
+  .slide-out-right {
+      -webkit-animation: slide-out-right 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+              animation: slide-out-right 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+  }
+  
+   @-webkit-keyframes slide-out-right {
+    0% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: translateX(1000px);
+              transform: translateX(1000px);
+      opacity: 0;
+    }
+  }
+  @keyframes slide-out-right {
+    0% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: translateX(1000px);
+              transform: translateX(1000px);
+      opacity: 0;
+    }
+  }
+  
+  
+  
+  .slide-out-left {
+      -webkit-animation: slide-out-left 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+              animation: slide-out-left 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+  }
+  
+  @-webkit-keyframes slide-out-left {
+    0% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: translateX(-1000px);
+              transform: translateX(-1000px);
+      opacity: 0;
+    }
+  }
+  @keyframes slide-out-left {
+    0% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: translateX(-1000px);
+              transform: translateX(-1000px);
+      opacity: 0;
+    }
+  }
+  
+  
+  
+  
+  /* logo blue: 8686A6 */
+  /* logo green: 1D5405 */
