@@ -18,7 +18,7 @@ body {
   margin: 0;
   border-left: 1px white solid;
   border-right:1px white solid;
-  box-shadow: 0px 0px 100px 10px #f1fc24f5; 
+  box-shadow: 0px 0px 10px 10px white; 
 }
 
 .content {
@@ -124,6 +124,7 @@ body {
 .cardBodyFront,
 .cardBodyBack {
   display: flex;
+  overflow: scroll;
   position: absolute;
   width: 100%;
   height: 100%;
