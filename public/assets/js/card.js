@@ -33,6 +33,7 @@ $(document).ready(function () {
         returnFront();
         nextCard();
         setTimeout(function () { displayCard(deck); }, 1000);
+        rollInNext();
     });
 
     $('.last').on('click', function () {
@@ -41,6 +42,7 @@ $(document).ready(function () {
         returnFront();
         previousCard();
         setTimeout(function () { displayCard(deck); }, 1000);
+        rollInLast();
     });
 
     $('.flip').on('click', function () {
@@ -52,7 +54,6 @@ $(document).ready(function () {
 function roll() {
     $('.cardHeader').toggleClass('rolled');
     setTimeout(function () { flip(); }, 500);
-    setTimeout(function () { question.text(deck[count].term);}, 5000);
 };
 
 // changes the class of the card face which animates the flip and toggles the side shown
@@ -73,9 +74,20 @@ const previousCard = () => {
     $('.cardBody').addClass('slide-out-left');
     setTimeout(function () { removeSlideLeft(); }, 1000);
 };
+
 const nextCard = () => {
     $('.cardBody').addClass('slide-out-right');
     setTimeout(function () { removeSlideRight(); }, 1000);
+};
+
+const rollInNext = () => {
+    setTimeout(function () { $('.cardBody').addClass('roll-in-right'); }, 1000);
+    setTimeout(function () { removeRollInNext(); }, 1300);
+};
+
+const rollInLast = () => {
+    setTimeout(function () { $('.cardBody').addClass('roll-in-left'); }, 1000);
+    setTimeout(function () { removeRollInLast(); }, 1300);
 };
 
 const removeSlideLeft = () => {
@@ -85,4 +97,13 @@ const removeSlideLeft = () => {
 const removeSlideRight = () => {
     $('.cardBody').removeClass('slide-out-right');
 };
+
+const removeRollInNext = () => {
+    $('.cardBody').removeClass('roll-in-right');
+};
+
+const removeRollInLast = () => {
+    $('.cardBody').removeClass('roll-in-left');
+};
+
 
